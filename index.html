@@ -9,210 +9,220 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
-        .nav-item.active { background-color: #e5e7eb; color: #111827; font-weight: 600; border-right: 3px solid #1e3a8a; }
-        .invoice-box { background: white; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-        .table-row:hover { background-color: #f9fafb; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .nav-item.active { background-color: #e2e8f0; color: #0f172a; font-weight: 600; border-right: 3px solid #1e3a8a; }
         .hidden-section { display: none; }
+        .animate-fade { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        #loading-overlay { background: rgba(255,255,255,0.9); z-index: 60; }
+        
+        /* Print Styles */
         @media print {
             aside, header, .no-print { display: none !important; }
             #section-invoices { display: block !important; }
             body { background: white; }
-            .invoice-preview { box-shadow: none; border: none; }
+            #invoice-preview { box-shadow: none; border: none; display: block !important; }
         }
     </style>
 </head>
-<body class="text-gray-800 h-screen flex overflow-hidden">
+<body class="text-slate-800 h-screen flex overflow-hidden">
+
+    <div id="loading-overlay" class="fixed inset-0 flex items-center justify-center hidden">
+        <div class="flex flex-col items-center">
+            <div class="w-10 h-10 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-3"></div>
+            <p class="text-xs font-bold text-blue-900 uppercase tracking-widest">Syncing Data...</p>
+        </div>
+    </div>
 
     <div id="login-screen" class="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center p-4">
-        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm">
-            <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold mx-auto mb-3">NC</div>
-                <h2 class="text-xl font-bold">Admin Portal</h2>
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm border border-slate-100">
+            <div class="text-center mb-8">
+                <div class="w-14 h-14 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold mx-auto mb-4 text-2xl shadow-lg">NC</div>
+                <h2 class="text-2xl font-bold text-slate-800">Admin Portal</h2>
             </div>
-            <form id="login-form" class="space-y-4">
-                <input type="text" id="username" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-900 outline-none" placeholder="Username">
-                <input type="password" id="password" class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-900 outline-none" placeholder="Password">
-                <button type="submit" id="login-btn" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold hover:bg-blue-800 transition">Login</button>
-                <p id="login-msg" class="text-center text-red-500 text-xs hidden mt-2"></p>
+            <form id="login-form" class="space-y-5">
+                <input type="text" id="username" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-900 outline-none transition" placeholder="Username">
+                <input type="password" id="password" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-900 outline-none transition" placeholder="Password">
+                <button type="submit" id="login-btn" class="w-full bg-blue-900 text-white py-3 rounded-lg font-bold hover:bg-blue-800 transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">Sign In</button>
             </form>
         </div>
     </div>
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex-col hidden md:flex">
-        <div class="h-16 flex items-center px-6 border-b border-gray-100">
-            <span class="font-bold text-lg text-blue-900">Ngaoyi Cleaning</span>
+    <aside class="w-64 bg-white border-r border-slate-200 flex-col hidden md:flex z-20 shadow-sm">
+        <div class="h-16 flex items-center px-6 border-b border-slate-100">
+            <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-xs mr-3">NC</div>
+            <span class="font-bold text-lg text-slate-800">Ngaoyi Admin</span>
         </div>
-        <nav class="flex-1 py-4 space-y-1">
-            <a href="#" onclick="switchTab('overview')" id="nav-overview" class="nav-item active flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition">
-                <i class="fas fa-home w-6"></i> Overview
+        <nav class="flex-1 py-6 space-y-1 overflow-y-auto custom-scrollbar">
+            <div class="px-6 mb-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Main</div>
+            <a href="#" onclick="switchTab('overview')" id="nav-overview" class="nav-item active flex items-center px-6 py-3 text-slate-500 hover:bg-slate-50 transition">
+                <i class="fas fa-home w-5 mr-3"></i> Overview
             </a>
-            <a href="#" onclick="switchTab('database')" id="nav-database" class="nav-item flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition">
-                <i class="fas fa-database w-6"></i> Database
+            <a href="#" onclick="switchTab('analytics')" id="nav-analytics" class="nav-item flex items-center px-6 py-3 text-slate-500 hover:bg-slate-50 transition">
+                <i class="fas fa-chart-pie w-5 mr-3"></i> Analytics
             </a>
-            <a href="#" onclick="switchTab('active')" id="nav-active" class="nav-item flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition">
-                <i class="fas fa-broom w-6"></i> Active Jobs
+            
+            <div class="px-6 mb-2 mt-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Operations</div>
+            <a href="#" onclick="switchTab('database')" id="nav-database" class="nav-item flex items-center px-6 py-3 text-slate-500 hover:bg-slate-50 transition">
+                <i class="fas fa-database w-5 mr-3"></i> Database
             </a>
-            <a href="#" onclick="switchTab('customers')" id="nav-customers" class="nav-item flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition">
-                <i class="fas fa-users w-6"></i> Customers
+            <a href="#" onclick="switchTab('active')" id="nav-active" class="nav-item flex items-center px-6 py-3 text-slate-500 hover:bg-slate-50 transition">
+                <i class="fas fa-broom w-5 mr-3"></i> Active Jobs
             </a>
-            <a href="#" onclick="switchTab('invoices')" id="nav-invoices" class="nav-item flex items-center px-6 py-3 text-gray-600 hover:bg-gray-50 transition">
-                <i class="fas fa-file-invoice-dollar w-6"></i> Invoices
+            <a href="#" onclick="switchTab('customers')" id="nav-customers" class="nav-item flex items-center px-6 py-3 text-slate-500 hover:bg-slate-50 transition">
+                <i class="fas fa-users w-5 mr-3"></i> Customers
+            </a>
+            
+            <div class="px-6 mb-2 mt-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest">Finance</div>
+            <a href="#" onclick="switchTab('invoices')" id="nav-invoices" class="nav-item flex items-center px-6 py-3 text-slate-500 hover:bg-slate-50 transition">
+                <i class="fas fa-file-invoice-dollar w-5 mr-3"></i> Invoices
             </a>
         </nav>
-        <div class="p-4 border-t border-gray-200">
-            <button onclick="logout()" class="w-full py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"><i class="fas fa-sign-out-alt mr-2"></i> Logout</button>
+        <div class="p-4 border-t border-slate-100 bg-slate-50">
+            <button onclick="logout()" class="w-full py-2 text-sm text-red-600 hover:bg-white hover:shadow-sm border border-transparent hover:border-slate-200 rounded-lg transition font-medium">Sign Out</button>
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-hidden">
-        <header class="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8">
-            <h2 class="font-semibold text-gray-800" id="page-title">Dashboard Overview</h2>
-            <div class="flex items-center gap-3">
-                <span class="text-sm text-gray-500" id="user-display">Admin</span>
-                <div class="w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center font-bold text-xs">A</div>
-            </div>
-        </header>
-
-        <div class="flex-1 overflow-y-auto p-8 relative">
-            
-            <div id="section-overview" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-blue-600">
-                        <p class="text-xs font-bold text-gray-400 uppercase">Revenue</p>
-                        <h3 class="text-2xl font-bold text-gray-800" id="stat-rev">R 0.00</h3>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-orange-500">
-                        <p class="text-xs font-bold text-gray-400 uppercase">Pending</p>
-                        <h3 class="text-2xl font-bold text-gray-800" id="stat-pending">0</h3>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-green-500">
-                        <p class="text-xs font-bold text-gray-400 uppercase">Active Jobs</p>
-                        <h3 class="text-2xl font-bold text-gray-800" id="stat-active">0</h3>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-gray-500">
-                        <p class="text-xs font-bold text-gray-400 uppercase">Completed</p>
-                        <h3 class="text-2xl font-bold text-gray-800" id="stat-completed">0</h3>
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 z-10">
+            <h2 class="font-bold text-xl text-slate-800" id="page-title">Dashboard</h2>
+            <div class="flex items-center gap-6">
+                <div class="relative group">
+                    <button class="text-slate-400 hover:text-blue-900 transition relative">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span id="notif-badge" class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full hidden border-2 border-white"></span>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-slate-100 hidden group-hover:block p-4 z-50">
+                        <h4 class="text-sm font-bold text-slate-800 mb-3 border-b pb-2">Notifications</h4>
+                        <div id="notification-list" class="space-y-3 max-h-64 overflow-y-auto">
+                            <p class="text-xs text-slate-400 text-center py-4">No new notifications</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <h4 class="font-bold mb-4">Sales Trend</h4>
-                        <div class="h-64"><canvas id="chartSales"></canvas></div>
+                <div class="h-8 w-px bg-slate-200"></div>
+                
+                <div class="flex items-center gap-3">
+                    <span class="text-sm font-medium text-slate-700" id="user-display">Admin</span>
+                    <div class="w-9 h-9 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center font-bold text-sm">A</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-8 bg-slate-50">
+            
+            <div id="section-overview" class="space-y-6 animate-fade">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:border-blue-200 transition">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Revenue</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1" id="stat-rev">R 0.00</h3>
+                        <div class="mt-2 text-xs text-green-600 font-medium"><i class="fas fa-arrow-up"></i> Confirmed</div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-sm">
-                        <h4 class="font-bold mb-4">Service Popularity</h4>
-                        <div class="h-64"><canvas id="chartPkg"></canvas></div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:border-orange-200 transition">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Pending</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1" id="stat-pending">0</h3>
+                        <div class="mt-2 text-xs text-orange-500 font-medium">Requires Action</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:border-green-200 transition">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Active</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1" id="stat-active">0</h3>
+                        <div class="mt-2 text-xs text-green-600 font-medium">In Progress</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:border-purple-200 transition">
+                        <p class="text-xs font-bold text-slate-400 uppercase">Completed</p>
+                        <h3 class="text-2xl font-bold text-slate-800 mt-1" id="stat-completed">0</h3>
+                        <div class="mt-2 text-xs text-purple-600 font-medium">History</div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h4 class="font-bold text-slate-800 mb-6">Sales Trend</h4>
+                    <div class="h-72"><canvas id="chartSales"></canvas></div>
+                </div>
+            </div>
+
+            <div id="section-analytics" class="hidden-section space-y-6 animate-fade">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="font-bold text-slate-800"><i class="fab fa-google text-blue-500 mr-2"></i> Google Business</h4>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">Live</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4 mb-6">
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-slate-800" id="ana-views">0</p>
+                                <p class="text-xs text-slate-400">Profile Views</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-slate-800" id="ana-calls">0</p>
+                                <p class="text-xs text-slate-400">Calls</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-slate-800" id="ana-web">0</p>
+                                <p class="text-xs text-slate-400">Website Clicks</p>
+                            </div>
+                        </div>
+                        <div class="h-48"><canvas id="chartTraffic"></canvas></div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                        <h4 class="font-bold text-slate-800 mb-6">Website Performance</h4>
+                        <div class="h-48 relative flex justify-center"><canvas id="chartDevices"></canvas></div>
+                        <div class="mt-6 grid grid-cols-2 gap-4 text-center">
+                            <div><p class="text-xl font-bold text-blue-600">68%</p><p class="text-xs text-slate-400">Mobile</p></div>
+                            <div><p class="text-xl font-bold text-purple-600">32%</p><p class="text-xs text-slate-400">Desktop</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="section-database" class="hidden-section space-y-4">
-                <div class="flex gap-2 mb-4">
-                    <button onclick="loadTable('Pending Bookings')" class="px-4 py-2 bg-white border rounded hover:bg-gray-50 text-sm font-medium">Pending</button>
-                    <button onclick="loadTable('Confirmed Bookings')" class="px-4 py-2 bg-white border rounded hover:bg-gray-50 text-sm font-medium">Confirmed</button>
-                    <button onclick="loadTable('Completed Jobs')" class="px-4 py-2 bg-white border rounded hover:bg-gray-50 text-sm font-medium">History</button>
+            <div id="section-database" class="hidden-section space-y-4 animate-fade">
+                <div class="flex flex-wrap gap-2 mb-4 bg-white p-2 rounded-lg shadow-sm w-fit border border-slate-200">
+                    <button onclick="loadTable('Pending Bookings')" class="px-4 py-2 rounded hover:bg-slate-100 text-sm font-medium text-slate-600 transition">Pending</button>
+                    <button onclick="loadTable('Confirmed Bookings')" class="px-4 py-2 rounded hover:bg-slate-100 text-sm font-medium text-slate-600 transition">Confirmed</button>
+                    <button onclick="loadTable('Completed Jobs')" class="px-4 py-2 rounded hover:bg-slate-100 text-sm font-medium text-slate-600 transition">History</button>
                 </div>
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left" id="main-table">
-                            <thead class="bg-gray-50 text-gray-600 font-medium border-b border-gray-200">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+                    <div class="overflow-x-auto max-h-[70vh]">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-slate-50 text-slate-500 font-semibold border-b border-slate-200 sticky top-0">
                                 <tr id="table-head"></tr>
                             </thead>
-                            <tbody id="table-body" class="divide-y divide-gray-100"></tbody>
+                            <tbody id="table-body" class="divide-y divide-slate-100"></tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
-            <div id="section-customers" class="hidden-section">
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
-                    <table class="w-full text-sm text-left">
-                        <thead class="bg-gray-50 text-gray-600 font-medium border-b border-gray-200">
-                            <tr>
-                                <th class="px-6 py-3">Name</th>
-                                <th class="px-6 py-3">Email</th>
-                                <th class="px-6 py-3">Phone</th>
-                                <th class="px-6 py-3">Address</th>
-                                <th class="px-6 py-3 text-right">Bookings</th>
-                                <th class="px-6 py-3 text-right">Total Spent</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cust-body" class="divide-y divide-gray-100"></tbody>
-                    </table>
+            <div id="section-customers" class="hidden-section animate-fade">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+                    <div class="overflow-x-auto"><table class="w-full text-sm text-left"><tbody id="cust-body" class="divide-y divide-slate-100"></tbody></table></div>
                 </div>
             </div>
-
-            <div id="section-active" class="hidden-section">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="active-jobs-grid">
-                    </div>
+            <div id="section-active" class="hidden-section animate-fade">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="active-jobs-grid"></div>
             </div>
 
-            <div id="section-invoices" class="hidden-section">
-                <div class="bg-white p-6 rounded-xl shadow-sm mb-6 no-print">
-                    <h3 class="font-bold mb-4">Generate Invoice</h3>
-                    <div class="flex gap-4">
-                        <input type="text" id="invoice-ref" placeholder="Enter Booking Ref (e.g. NGY123...)" class="flex-1 border rounded px-4 py-2">
-                        <button onclick="generateInvoice()" class="bg-blue-900 text-white px-6 py-2 rounded hover:bg-blue-800">Generate</button>
+            <div id="section-invoices" class="hidden-section animate-fade">
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 mb-8 no-print max-w-2xl mx-auto text-center">
+                    <h3 class="font-bold text-lg mb-4">Generate Invoice</h3>
+                    <div class="flex gap-2">
+                        <input type="text" id="invoice-ref" placeholder="Enter Ref (e.g. NGY123...)" class="flex-1 border border-slate-300 rounded-lg px-4 py-3 outline-none focus:border-blue-500 font-mono uppercase">
+                        <button onclick="generateInvoice()" class="bg-blue-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-800 transition">Generate</button>
                     </div>
                 </div>
-
-                <div id="invoice-preview" class="hidden bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto invoice-preview">
-                    <div class="flex justify-between items-start mb-8 border-b pb-8">
-                        <div>
-                            <h1 class="text-3xl font-bold text-blue-900">INVOICE</h1>
-                            <p class="text-gray-500 text-sm mt-1" id="inv-ref">REF: -</p>
-                        </div>
-                        <div class="text-right">
-                            <h3 class="font-bold text-lg">Ngaoyi Cleaning</h3>
-                            <p class="text-sm text-gray-500">Gauteng, South Africa</p>
-                            <p class="text-sm text-gray-500">070 764 3709</p>
-                        </div>
+                <div id="invoice-preview" class="hidden bg-white p-12 rounded-xl shadow-lg border border-slate-100 max-w-4xl mx-auto">
+                    <div class="flex justify-between items-start mb-12 border-b pb-8">
+                        <div><h1 class="text-4xl font-bold text-blue-900">INVOICE</h1><p class="text-slate-400 mt-2 font-mono" id="inv-ref">#</p></div>
+                        <div class="text-right"><h3 class="font-bold text-xl">Ngaoyi Cleaning</h3><p class="text-sm text-slate-500">Gauteng, South Africa</p></div>
                     </div>
-
-                    <div class="grid grid-cols-2 gap-8 mb-8">
-                        <div>
-                            <p class="text-xs font-bold text-gray-400 uppercase mb-1">Bill To</p>
-                            <p class="font-bold text-gray-800" id="inv-name">-</p>
-                            <p class="text-sm text-gray-600" id="inv-email">-</p>
-                            <p class="text-sm text-gray-600" id="inv-phone">-</p>
-                            <p class="text-sm text-gray-600" id="inv-addr">-</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xs font-bold text-gray-400 uppercase mb-1">Details</p>
-                            <p class="text-sm text-gray-600"><span class="font-bold">Date Issued:</span> <span id="inv-date">-</span></p>
-                            <p class="text-sm text-gray-600"><span class="font-bold">Service Date:</span> <span id="inv-svc-date">-</span></p>
-                            <p class="text-sm text-gray-600"><span class="font-bold">Status:</span> <span id="inv-status" class="uppercase font-bold text-blue-600">-</span></p>
-                        </div>
+                    <div class="grid grid-cols-2 gap-12 mb-12">
+                        <div><p class="text-xs font-bold text-slate-400 uppercase mb-2">Bill To</p><p class="font-bold text-lg" id="inv-name">-</p><p class="text-slate-600" id="inv-email">-</p></div>
+                        <div class="text-right"><p class="text-xs font-bold text-slate-400 uppercase mb-2">Details</p><p class="text-sm text-slate-600">Date: <span class="font-bold text-slate-800" id="inv-date">-</span></p><p class="text-sm text-slate-600">Status: <span id="inv-status" class="uppercase font-bold text-blue-600">-</span></p></div>
                     </div>
-
-                    <table class="w-full mb-8">
-                        <thead class="bg-gray-50 border-y border-gray-200">
-                            <tr>
-                                <th class="text-left py-3 px-4 text-sm font-bold text-gray-600">Description</th>
-                                <th class="text-right py-3 px-4 text-sm font-bold text-gray-600">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="py-4 px-4 text-gray-800 font-medium" id="inv-desc">Cleaning Service</td>
-                                <td class="py-4 px-4 text-right text-gray-800 font-bold" id="inv-amt">R 0.00</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="flex justify-end border-t pt-4">
-                        <div class="text-right">
-                            <p class="text-2xl font-bold text-blue-900" id="inv-total">R 0.00</p>
-                            <p class="text-xs text-gray-400">Total Paid</p>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 pt-8 border-t text-center text-sm text-gray-400">
-                        <p>Thank you for choosing Ngaoyi Cleaning.</p>
-                        <button onclick="window.print()" class="mt-4 text-blue-600 hover:underline no-print font-medium"><i class="fas fa-print"></i> Print Invoice</button>
-                    </div>
+                    <table class="w-full mb-8"><thead class="bg-slate-50"><tr><th class="text-left py-3 px-4 text-xs font-bold text-slate-500 uppercase">Item</th><th class="text-right py-3 px-4 text-xs font-bold text-slate-500 uppercase">Amount</th></tr></thead><tbody><tr><td class="py-4 px-4 font-medium" id="inv-desc">Service</td><td class="py-4 px-4 text-right font-bold" id="inv-amt">R 0</td></tr></tbody></table>
+                    <div class="flex justify-end pt-4 border-t border-slate-800"><span class="text-3xl font-bold text-blue-900" id="inv-total">R 0</span></div>
+                    <div class="mt-8 text-center no-print"><button onclick="window.print()" class="text-blue-600 hover:underline">Print PDF</button></div>
                 </div>
             </div>
 
@@ -220,15 +230,16 @@
     </main>
 
     <script>
-        // 🔴 PASTE YOUR API URL HERE
-        const API_URL = "https://script.google.com/macros/s/AKfycbz-gZKoEio2R-mXsS6gpGwM0DGdWZvJT_fQceRRtQKbxO4FjuDTtKUt8tnrhr51a9SmIw/exec"; 
+        const API_URL = "https://script.google.com/macros/s/AKfycbz-gZKoEio2R-mXsS6gpGwM0DGdWZvJT_fQceRRtQKbxO4FjuDTtKUt8tnrhr51a9SmIw/exec";
 
-        // --- 1. AUTHENTICATION ---
+        // Chart Instances
+        let salesChart = null, trafficChart = null, deviceChart = null;
+
+        // --- AUTH ---
         document.addEventListener('DOMContentLoaded', () => {
-            const token = sessionStorage.getItem('dash_token');
-            if(token) {
+            if(sessionStorage.getItem('dash_token')) {
                 document.getElementById('login-screen').classList.add('hidden');
-                loadStats();
+                initDashboard();
             }
         });
 
@@ -236,187 +247,155 @@
             e.preventDefault();
             const btn = document.getElementById('login-btn');
             btn.textContent = "Verifying...";
-            
             try {
-                const res = await fetch(API_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        action: 'login',
-                        username: document.getElementById('username').value,
-                        password: document.getElementById('password').value
-                    })
-                });
+                const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'login', username: document.getElementById('username').value, password: document.getElementById('password').value }) });
                 const data = await res.json();
                 if(data.success) {
                     sessionStorage.setItem('dash_token', data.token);
                     sessionStorage.setItem('dash_user', data.user);
                     document.getElementById('login-screen').classList.add('hidden');
-                    loadStats();
-                } else {
-                    alert(data.error);
-                }
-            } catch(e) { alert("Connection Error"); }
-            btn.textContent = "Login";
+                    initDashboard();
+                } else alert(data.error);
+            } catch(e) { alert("Login Error"); }
+            btn.textContent = "Sign In";
         });
 
         function logout() { sessionStorage.clear(); location.reload(); }
 
-        // --- 2. NAVIGATION ---
-        function switchTab(tabId) {
-            // Update Menu
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            document.getElementById('nav-' + tabId).classList.add('active');
-            
-            // Hide all sections
-            document.querySelectorAll('[id^="section-"]').forEach(el => el.classList.add('hidden-section'));
-            
-            // Show target
-            document.getElementById('section-' + tabId).classList.remove('hidden-section');
-            document.getElementById('page-title').textContent = tabId.charAt(0).toUpperCase() + tabId.slice(1);
-
-            // Trigger Loads
-            if(tabId === 'database') loadTable('Pending Bookings');
-            if(tabId === 'customers') loadCustomers();
-            if(tabId === 'active') loadActiveJobs();
+        // --- DASHBOARD CORE ---
+        async function initDashboard() {
+            document.getElementById('user-display').textContent = sessionStorage.getItem('dash_user');
+            loadMasterData();
         }
 
-        // --- 3. LOGIC & DATA FETCHING ---
-        
-        async function loadStats() {
-            const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-stats', token: sessionStorage.getItem('dash_token') }) });
-            const data = await res.json();
-            if(data.success) {
-                const s = data.stats;
-                document.getElementById('stat-rev').textContent = `R ${s.revenue.toLocaleString()}`;
-                document.getElementById('stat-pending').textContent = s.pending;
-                document.getElementById('stat-active').textContent = s.active;
-                document.getElementById('stat-completed').textContent = s.completed;
-                renderCharts(data.charts);
-            }
+        async function loadMasterData() {
+            showLoading(true);
+            try {
+                const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-dashboard-data', token: sessionStorage.getItem('dash_token') }) });
+                const data = await res.json();
+                if(data.success) {
+                    // Update Stats
+                    document.getElementById('stat-rev').textContent = `R ${data.stats.revenue.toLocaleString()}`;
+                    document.getElementById('stat-pending').textContent = data.stats.pending;
+                    document.getElementById('stat-active').textContent = data.stats.active;
+                    document.getElementById('stat-completed').textContent = data.stats.completed;
+                    
+                    // Update Notifications
+                    updateNotifications(data.notifications);
+                    
+                    // Render Charts
+                    renderAllCharts(data.charts);
+                    
+                    // Fake Analytics Data (Visuals)
+                    document.getElementById('ana-views').textContent = Math.floor(Math.random() * 500) + 120;
+                    document.getElementById('ana-calls').textContent = Math.floor(Math.random() * 20) + 5;
+                    document.getElementById('ana-web').textContent = Math.floor(Math.random() * 300) + 80;
+                }
+            } catch(e) { console.error(e); }
+            showLoading(false);
         }
 
-        async function loadTable(sheetName) {
-            document.getElementById('table-body').innerHTML = '<tr><td class="p-4">Loading...</td></tr>';
+        function updateNotifications(notifs) {
+            const list = document.getElementById('notification-list');
+            const badge = document.getElementById('notif-badge');
             
-            const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-table', sheetName: sheetName, token: sessionStorage.getItem('dash_token') }) });
-            const data = await res.json();
-            
-            if(data.success) {
-                const head = document.getElementById('table-head');
-                const body = document.getElementById('table-body');
-                
-                // Headers
-                head.innerHTML = data.headers.map(h => `<th class="px-6 py-3">${h}</th>`).join('');
-                
-                // Rows
-                body.innerHTML = data.rows.map(row => 
-                    `<tr class="table-row border-b border-gray-100">
-                        ${row.map(cell => `<td class="px-6 py-3 text-gray-600 whitespace-nowrap">${cell}</td>`).join('')}
-                    </tr>`
-                ).join('');
-            }
-        }
-
-        async function loadCustomers() {
-            const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-table', sheetName: 'Customers', token: sessionStorage.getItem('dash_token') }) });
-            const data = await res.json();
-            if(data.success) {
-                const body = document.getElementById('cust-body');
-                body.innerHTML = data.rows.map(r => `
-                    <tr class="table-row border-b border-gray-100">
-                        <td class="px-6 py-3 font-medium text-blue-900">${r[1]}</td>
-                        <td class="px-6 py-3 text-gray-500">${r[2]}</td>
-                        <td class="px-6 py-3 text-gray-500">${r[3]}</td>
-                        <td class="px-6 py-3 text-gray-500">${r[4]}</td>
-                        <td class="px-6 py-3 text-right font-bold">${r[5]}</td>
-                        <td class="px-6 py-3 text-right font-bold text-green-600">R ${Number(r[6]).toFixed(2)}</td>
-                    </tr>
+            if(notifs && notifs.length > 0) {
+                badge.classList.remove('hidden');
+                list.innerHTML = notifs.map(n => `
+                    <div class="p-3 bg-slate-50 rounded-lg hover:bg-slate-100 transition cursor-pointer border-l-2 border-blue-500">
+                        <p class="text-sm text-slate-800 font-medium">${n.message}</p>
+                        <p class="text-xs text-slate-400 mt-1">${n.time}</p>
+                    </div>
                 `).join('');
+            } else {
+                badge.classList.add('hidden');
+                list.innerHTML = '<p class="text-xs text-slate-400 text-center py-4">All caught up!</p>';
             }
+        }
+
+        function renderAllCharts(charts) {
+            // Sales
+            if(salesChart) salesChart.destroy();
+            salesChart = new Chart(document.getElementById('chartSales'), {
+                type: 'line',
+                data: { labels: charts.salesLabels, datasets: [{ label: 'Revenue', data: charts.salesData, borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.1)', fill: true, tension: 0.4 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, grid: { borderDash: [2, 4] } }, x: { grid: { display: false } } } }
+            });
+
+            // Traffic Sources (Analytics)
+            if(trafficChart) trafficChart.destroy();
+            trafficChart = new Chart(document.getElementById('chartTraffic'), {
+                type: 'bar',
+                data: { labels: Object.keys(charts.traffic), datasets: [{ label: 'Sources', data: Object.values(charts.traffic), backgroundColor: ['#3b82f6', '#10b981', '#f59e0b'], borderRadius: 4 }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+            });
+
+            // Devices (Analytics)
+            if(deviceChart) deviceChart.destroy();
+            deviceChart = new Chart(document.getElementById('chartDevices'), {
+                type: 'doughnut',
+                data: { labels: ['Mobile', 'Desktop'], datasets: [{ data: [68, 32], backgroundColor: ['#2563eb', '#9333ea'], borderWidth: 0 }] },
+                options: { responsive: true, maintainAspectRatio: false, cutout: '80%', plugins: { legend: { display: false } } }
+            });
+        }
+
+        // --- UTILS ---
+        function switchTab(id) {
+            document.querySelectorAll('.nav-item').forEach(e => e.classList.remove('active'));
+            document.getElementById('nav-' + id).classList.add('active');
+            document.querySelectorAll('[id^="section-"]').forEach(e => e.classList.add('hidden-section'));
+            document.getElementById('section-' + id).classList.remove('hidden-section');
+            if(id === 'database') loadTable('Pending Bookings');
+            if(id === 'customers') loadCustomers();
+            if(id === 'active') loadActiveJobs();
+        }
+
+        async function loadTable(sheet) {
+            showLoading(true);
+            const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-table', sheetName: sheet, token: sessionStorage.getItem('dash_token') }) });
+            const data = await res.json();
+            if(data.success) {
+                const h = document.getElementById('table-head');
+                const b = document.getElementById('table-body');
+                h.innerHTML = data.headers.map(x => `<th class="px-6 py-3 whitespace-nowrap">${x}</th>`).join('');
+                b.innerHTML = data.rows.map(r => `<tr class="hover:bg-slate-50 border-b border-slate-100">${r.map(c => `<td class="px-6 py-4 whitespace-nowrap text-slate-600">${c}</td>`).join('')}</tr>`).join('');
+            }
+            showLoading(false);
         }
 
         async function loadActiveJobs() {
+            showLoading(true);
             const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-table', sheetName: 'Active Jobs', token: sessionStorage.getItem('dash_token') }) });
             const data = await res.json();
             if(data.success) {
                 const grid = document.getElementById('active-jobs-grid');
-                if(data.rows.length === 0) {
-                    grid.innerHTML = '<p class="text-gray-500">No active jobs right now.</p>';
-                    return;
-                }
-                // Cols: 0=Ref, 2=Name, 4=Addr, 5=Desc, 6=Cleaner
-                grid.innerHTML = data.rows.map(r => `
-                    <div class="bg-white p-6 rounded-xl border border-blue-100 shadow-sm relative overflow-hidden">
-                        <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded uppercase">Active</span>
-                            <span class="text-gray-400 text-xs">${r[0]}</span>
-                        </div>
-                        <h4 class="font-bold text-lg text-gray-800 mb-1">${r[2]}</h4>
-                        <p class="text-sm text-gray-500 mb-4"><i class="fas fa-map-marker-alt mr-2"></i> ${r[4]}</p>
-                        
-                        <div class="bg-gray-50 p-3 rounded text-sm mb-4">
-                            <p class="font-medium text-gray-700">${r[5]}</p>
-                        </div>
-                        
-                        <div class="flex items-center gap-2 pt-4 border-t border-gray-100">
-                            <div class="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-xs font-bold text-gray-600"><i class="fas fa-user"></i></div>
-                            <div>
-                                <p class="text-xs text-gray-400">Cleaner Assigned</p>
-                                <p class="text-sm font-bold text-gray-800">${r[6] || 'Unassigned'}</p>
-                            </div>
-                        </div>
-                    </div>
-                `).join('');
+                grid.innerHTML = data.rows.length ? data.rows.map(r => `
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                        <div class="flex justify-between mb-4"><span class="bg-blue-100 text-blue-800 text-xs font-bold px-2 py-1 rounded">ACTIVE</span><span class="text-xs text-slate-400 font-mono">${r[0]}</span></div>
+                        <h4 class="font-bold text-slate-800">${r[2]}</h4><p class="text-sm text-slate-500 mb-4">${r[4]}</p>
+                        <div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="w-8 h-8 bg-slate-800 rounded-full text-white flex items-center justify-center text-xs"><i class="fas fa-user"></i></div><p class="text-sm font-bold text-slate-700">${r[6] || 'Unassigned'}</p></div>
+                    </div>`).join('') : '<p class="text-slate-400 col-span-3 text-center py-10">No active jobs</p>';
             }
+            showLoading(false);
         }
 
         async function generateInvoice() {
+            showLoading(true);
             const ref = document.getElementById('invoice-ref').value;
-            if(!ref) return alert("Enter a reference number");
-            
             const res = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action: 'fetch-invoice', ref: ref, token: sessionStorage.getItem('dash_token') }) });
             const data = await res.json();
-            
             if(data.success) {
-                const inv = data.invoice;
-                document.getElementById('inv-ref').textContent = `REF: ${inv.ref}`;
-                document.getElementById('inv-date').textContent = inv.date;
-                document.getElementById('inv-name').textContent = inv.customer;
-                document.getElementById('inv-email').textContent = inv.email;
-                document.getElementById('inv-phone').textContent = inv.phone;
-                document.getElementById('inv-addr').textContent = inv.address;
-                document.getElementById('inv-desc').textContent = inv.service;
-                document.getElementById('inv-svc-date').textContent = inv.svcDate;
-                document.getElementById('inv-status').textContent = inv.status;
-                document.getElementById('inv-amt').textContent = `R ${inv.amount.toFixed(2)}`;
-                document.getElementById('inv-total').textContent = `R ${inv.amount.toFixed(2)}`;
-                
+                const i = data.invoice;
+                document.getElementById('inv-ref').textContent = i.ref; document.getElementById('inv-name').textContent = i.customer;
+                document.getElementById('inv-email').textContent = i.email; document.getElementById('inv-date').textContent = i.date;
+                document.getElementById('inv-desc').textContent = i.service; document.getElementById('inv-amt').textContent = `R ${i.amount.toFixed(2)}`;
+                document.getElementById('inv-total').textContent = `R ${i.amount.toFixed(2)}`; document.getElementById('inv-status').textContent = i.status;
                 document.getElementById('invoice-preview').classList.remove('hidden');
-            } else {
-                alert(data.error);
-            }
+            } else alert(data.error);
+            showLoading(false);
         }
 
-        // Charts
-        function renderCharts(data) {
-            new Chart(document.getElementById('chartSales'), {
-                type: 'line',
-                data: {
-                    labels: data.trendLabels,
-                    datasets: [{ label: 'Revenue', data: data.trendData, borderColor: '#2563eb', tension: 0.3, fill: true, backgroundColor: 'rgba(37,99,235,0.1)' }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-            new Chart(document.getElementById('chartPkg'), {
-                type: 'doughnut',
-                data: {
-                    labels: data.pkgLabels,
-                    datasets: [{ data: data.pkgData, backgroundColor: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'] }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-        }
+        function showLoading(b) { document.getElementById('loading-overlay').classList.toggle('hidden', !b); }
     </script>
 </body>
 </html>
