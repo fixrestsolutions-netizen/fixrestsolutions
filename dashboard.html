@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngaoyi Admin | Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f1f2f4; }
+        .sidebar-link { transition: all 0.2s; }
+        .sidebar-link:hover, .sidebar-link.active { background-color: #e3e5e8; color: #1a1a1a; font-weight: 500; }
+        .card { background: white; border: 1px solid #e1e3e5; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .login-bg { background: linear-gradient(135deg, #003b6f 0%, #001f3f 100%); }
+        .spinner { animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="login-screen" class="min-h-screen login-bg flex items-center justify-center p-4">
+        <div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-sm">
+            <div class="flex justify-center mb-8">
+                <div class="w-16 h-16 bg-blue-900 rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg">NC</div>
+            </div>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">Welcome Back</h2>
+            <p class="text-center text-gray-500 mb-8 text-sm">Sign in to manage Ngaoyi Cleaning</p>
+            
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Username</label>
+                    <input type="text" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition" placeholder="Enter username">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition" placeholder="••••••••">
+                </div>
+                <button type="submit" id="login-btn" class="w-full bg-blue-900 text-white py-3 rounded-lg font-semibold hover:bg-blue-800 transition shadow-md">
+                    Log In
+                </button>
+                <p id="login-msg" class="text-center text-red-500 text-xs hidden font-medium"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="hidden flex h-screen overflow-hidden">
+        
+        <aside class="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-xs">NC</div>
+                <span class="font-bold text-gray-800 tracking-tight">Ngaoyi Admin</span>
+            </div>
+            
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="#" class="sidebar-link active flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 text-sm">
+                    <i class="fas fa-home w-5"></i> Home
+                </a>
+                <a href="#" onclick="window.open('https://docs.google.com/spreadsheets', '_blank')" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 text-sm">
+                    <i class="fas fa-table w-5"></i> Database
+                </a>
+                <div class="pt-4 pb-2">
+                    <p class="px-3 text-xs font-bold text-gray-400 uppercase">Analytics</p>
+                </div>
+                <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2 rounded-lg text-gray-600 text-sm">
+                    <i class="fas fa-chart-bar w-5"></i> Reports
+                </a>
+            </nav>
+
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 text-xs font-bold" id="user-avatar">A</div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-800" id="user-name">Admin</p>
+                        <p class="text-xs text-gray-500">Owner</p>
+                    </div>
+                </div>
+                <button onclick="logout()" class="w-full border border-gray-300 text-gray-600 py-1.5 rounded-lg text-xs font-medium hover:bg-gray-50 transition">Sign Out</button>
+            </div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <header class="bg-white border-b border-gray-200 h-16 flex items-center justify-between px-8 sticky top-0 z-30">
+                <h2 class="font-semibold text-gray-800">Dashboard</h2>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Live Data</span>
+                    <button onclick="fetchData()" class="text-gray-400 hover:text-blue-900 transition"><i class="fas fa-sync-alt"></i></button>
+                </div>
+            </header>
+
+            <div class="p-8 max-w-7xl mx-auto">
+                
+                <div class="flex justify-end mb-6">
+                    <div class="bg-white border border-gray-200 rounded-lg shadow-sm flex text-sm">
+                        <button class="px-4 py-1.5 text-gray-600 hover:bg-gray-50 rounded-l-lg border-r border-gray-100">Today</button>
+                        <button class="px-4 py-1.5 text-blue-900 bg-blue-50 font-medium border-r border-gray-100">This Month</button>
+                        <button class="px-4 py-1.5 text-gray-600 hover:bg-gray-50 rounded-r-lg">All Time</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6">
+                        <p class="text-xs font-bold text-gray-500 uppercase mb-2">Total Sales</p>
+                        <h3 class="text-3xl font-bold text-gray-900" id="kpi-revenue">R 0.00</h3>
+                        <div class="mt-4 flex items-center text-xs text-green-600 font-medium">
+                            <i class="fas fa-arrow-up mr-1"></i> <span>Confirmed Revenue</span>
+                        </div>
+                    </div>
+
+                    <div class="card p-6">
+                        <p class="text-xs font-bold text-gray-500 uppercase mb-2">Total Orders</p>
+                        <h3 class="text-3xl font-bold text-gray-900" id="kpi-orders">0</h3>
+                        <div class="mt-4 flex items-center text-xs text-gray-500">
+                            <span>Across all time</span>
+                        </div>
+                    </div>
+
+                    <div class="card p-6 border-l-4 border-orange-400">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-bold text-gray-500 uppercase mb-2">Pending</p>
+                                <h3 class="text-3xl font-bold text-gray-900" id="kpi-pending">0</h3>
+                            </div>
+                            <div class="bg-orange-50 p-2 rounded text-orange-500">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-xs text-orange-600 font-medium">
+                            Requires Attention
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6 lg:col-span-2">
+                        <h4 class="font-bold text-gray-800 mb-6">Sales Trend</h4>
+                        <div class="h-64">
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card p-6">
+                        <h4 class="font-bold text-gray-800 mb-6">Top Services</h4>
+                        <div class="h-48 relative">
+                            <canvas id="packageChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card overflow-hidden">
+                    <div class="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+                        <h4 class="font-bold text-gray-800">Recent Bookings</h4>
+                        <a href="https://docs.google.com/spreadsheets" target="_blank" class="text-xs text-blue-600 hover:underline font-medium">View All</a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left">
+                            <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
+                                <tr>
+                                    <th class="px-6 py-3 font-semibold">Order</th>
+                                    <th class="px-6 py-3 font-semibold">Date</th>
+                                    <th class="px-6 py-3 font-semibold">Customer</th>
+                                    <th class="px-6 py-3 font-semibold">Payment Status</th>
+                                    <th class="px-6 py-3 font-semibold text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100" id="recent-orders-body">
+                                <tr>
+                                    <td class="px-6 py-4 text-gray-500" colspan="5">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 🔴 PASTE YOUR NEW SCRIPT WEB APP URL HERE
+        const API_URL = "https://script.google.com/macros/s/AKfycbz-gZKoEio2R-mXsS6gpGwM0DGdWZvJT_fQceRRtQKbxO4FjuDTtKUt8tnrhr51a9SmIw/exec";
+
+        // State
+        let salesChartInst = null;
+        let pkgChartInst = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = sessionStorage.getItem('dash_token');
+            if(token) showDashboard(); else showLogin();
+        });
+
+        // 1. Auth Logic
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('login-btn');
+            const msg = document.getElementById('login-msg');
+            
+            btn.disabled = true; btn.textContent = "Authenticating..."; msg.classList.add('hidden');
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'login',
+                        username: document.getElementById('username').value,
+                        password: document.getElementById('password').value
+                    })
+                });
+                const data = await res.json();
+
+                if(data.success) {
+                    sessionStorage.setItem('dash_token', data.token);
+                    sessionStorage.setItem('dash_user', data.user);
+                    showDashboard();
+                } else {
+                    throw new Error(data.error);
+                }
+            } catch(e) {
+                msg.textContent = e.message || "Login Failed";
+                msg.classList.remove('hidden');
+                btn.disabled = false; btn.textContent = "Log In";
+            }
+        });
+
+        // 2. Data Fetching
+        async function fetchData() {
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        action: 'fetch-stats', 
+                        token: sessionStorage.getItem('dash_token') 
+                    })
+                });
+                const data = await res.json();
+                
+                if(data.success) {
+                    renderStats(data);
+                } else {
+                    logout();
+                }
+            } catch(e) { console.error(e); }
+        }
+
+        // 3. Rendering
+        function renderStats(data) {
+            // KPIs
+            document.getElementById('kpi-revenue').textContent = `R ${data.stats.revenue.toLocaleString()}`;
+            document.getElementById('kpi-orders').textContent = data.stats.orders;
+            document.getElementById('kpi-pending').textContent = data.stats.pending;
+            
+            // User
+            document.getElementById('user-name').textContent = sessionStorage.getItem('dash_user');
+            document.getElementById('user-avatar').textContent = sessionStorage.getItem('dash_user').charAt(0).toUpperCase();
+
+            // Table
+            const tbody = document.getElementById('recent-orders-body');
+            tbody.innerHTML = '';
+            if(data.recent.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="px-6 py-4 text-center text-gray-500">No recent orders found.</td></tr>`;
+            } else {
+                data.recent.forEach(order => {
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-6 py-4 font-medium text-blue-900">#${order.ref}</td>
+                            <td class="px-6 py-4 text-gray-500">${order.date}</td>
+                            <td class="px-6 py-4 font-medium text-gray-900">${order.customer}</td>
+                            <td class="px-6 py-4"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold uppercase">Paid</span></td>
+                            <td class="px-6 py-4 text-right font-medium text-gray-900">R ${Number(order.amount).toFixed(2)}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            // Charts
+            renderCharts(data.charts);
+        }
+
+        function renderCharts(chartData) {
+            // Line Chart (Revenue)
+            const ctx1 = document.getElementById('salesChart').getContext('2d');
+            if(salesChartInst) salesChartInst.destroy();
+            
+            salesChartInst = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: chartData.trendLabels,
+                    datasets: [{
+                        label: 'Sales (ZAR)',
+                        data: chartData.trendData,
+                        borderColor: '#1e3a8a',
+                        backgroundColor: 'rgba(30, 58, 138, 0.05)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { borderDash: [2, 4] } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Doughnut Chart (Packages)
+            const ctx2 = document.getElementById('packageChart').getContext('2d');
+            if(pkgChartInst) pkgChartInst.destroy();
+
+            pkgChartInst = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: chartData.packageLabels,
+                    datasets: [{
+                        data: chartData.packageData,
+                        backgroundColor: ['#1e3a8a', '#3b82f6', '#93c5fd', '#10b981', '#f59e0b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'right', labels: { boxWidth: 12, usePointStyle: true } } },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        // 4. Utils
+        function showLogin() {
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('dashboard-screen').classList.add('hidden');
+        }
+        function showDashboard() {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('dashboard-screen').classList.remove('hidden');
+            fetchData();
+        }
+        function logout() {
+            sessionStorage.clear();
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
