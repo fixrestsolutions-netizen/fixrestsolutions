@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FixRest | Premium Airbnb Management & Co-Hosting</title>
+    
+    <title>FixRest | Premium Airbnb Management Durban & Joburg | Est. 2024</title>
+    <meta name="description" content="Established in 2024. FixRest provides high-yield Airbnb co-hosting in Durban & Johannesburg. Featuring Ngaoyi Cleaning turnovers and a vetted maintenance database.">
+    
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --primary-dark: #0F172A;
@@ -19,142 +23,248 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-light); color: var(--text-main); line-height: 1.7; overflow-x: hidden; }
 
         /* --- Navigation --- */
-        nav { position: fixed; width: 100%; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #E2E8F0; }
-        .logo { font-weight: 800; font-size: 1.5rem; color: var(--primary-dark); text-decoration: none; }
-        .logo span { color: var(--accent-orange); }
-        
-        /* Transparent Nav Button with Arrow */
-        .btn-nav-arrow { 
-            background: transparent; color: var(--primary-dark) !important; 
-            border: none; font-weight: 700; font-size: 0.9rem; text-decoration: none; 
-            display: flex; align-items: center; gap: 8px; transition: 0.3s;
+        nav { 
+            position: fixed; width: 100%; padding: 15px 8%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); 
+            z-index: 1000; border-bottom: 1px solid #E2E8F0; 
         }
-        .btn-nav-arrow:hover { color: var(--accent-orange) !important; transform: translateX(5px); }
+        .logo-img { height: 50px; cursor: pointer; }
+        .nav-links { display: flex; align-items: center; gap: 30px; }
+        .nav-links a.nav-item { text-decoration: none; color: var(--text-main); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+        .nav-links a.nav-item:hover { color: var(--accent-orange); }
+        
+        /* Arrow-Only Get in Touch Button */
+        .btn-nav-arrow { 
+            background: none; border: none; color: var(--accent-orange) !important; 
+            font-weight: 800; font-size: 0.95rem; text-decoration: none; 
+            display: flex; align-items: center; transition: 0.3s; cursor: pointer;
+        }
+        .btn-nav-arrow:hover { gap: 10px; transform: translateX(5px); }
+        .btn-nav-arrow::after { content: ' →'; font-size: 1.3rem; margin-left: 5px; }
 
-        /* --- Animations --- */
-        .fade-in { opacity: 0; transform: translateX(-30px); transition: all 0.8s ease-out; }
+        /* --- Global Styling --- */
+        section { padding: 120px 10%; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; }
+        .tagline { color: var(--accent-orange); font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+        h2 { font-size: 3rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 30px; line-height: 1.1; }
+        
+        .fade-in { opacity: 0; transform: translateX(-40px); transition: all 0.9s ease-out; }
         .visible { opacity: 1; transform: translateX(0); }
 
-        /* --- Global Style --- */
-        section { padding: 120px 10%; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; }
-        .tagline { color: var(--accent-orange); font-weight: 800; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 15px; display: block; }
-        h2 { font-size: 2.8rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 25px; line-height: 1.2; }
+        /* --- Hero --- */
+        #home { 
+            height: 100vh; 
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000') center/cover;
+            padding-top: 100px;
+        }
+        h1 { font-size: 4.5rem; font-weight: 800; color: var(--primary-dark); line-height: 1; margin-bottom: 25px; }
 
-        /* --- The Difference Section --- */
-        #difference { background: var(--bg-alt); }
-        .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
-        .diff-item { padding: 30px; border-left: 2px solid var(--accent-orange); background: white; }
-        .diff-item h4 { font-size: 1.3rem; margin-bottom: 10px; color: var(--primary-dark); }
+        /* --- About --- */
+        #about { background: var(--bg-alt); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-img { width: 100%; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.05); }
 
-        /* --- Split Contact Section --- */
-        #contact-split { background: var(--bg-light); display: grid; grid-template-columns: 1fr 1.2fr; gap: 0; padding: 0; min-height: 100vh; }
-        .contact-logo-side { background: var(--primary-dark); display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; padding: 60px; }
-        .contact-form-side { padding: 100px 10% 100px 10%; background: white; }
+        /* --- Operations Detail --- */
+        #ops { background: var(--bg-light); }
+        .op-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 40px; }
+        .op-card { padding: 50px; background: var(--bg-alt); border-radius: 20px; border: 1px solid #eee; }
+        .op-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+
+        /* --- Why Us Section --- */
+        #why { background: var(--primary-dark); color: white; }
+        #why h2, #why h3 { color: white; }
+        .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 50px; }
+        .why-card { border-left: 2px solid var(--accent-orange); padding-left: 30px; }
+        .why-card p { color: #94A3B8; }
+
+        /* --- Contact Split --- */
+        #contact-split { background: var(--bg-alt); padding: 120px 10%; }
+        .contact-container { display: grid; grid-template-columns: 1fr 1.3fr; background: #fff; border-radius: 30px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.05); }
+        .contact-logo-side { background: var(--primary-dark); padding: 60px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .contact-form-side { padding: 60px; }
         
-        .contact-info { margin-bottom: 40px; font-weight: 600; font-size: 1.1rem; }
-        .contact-info a { color: var(--accent-orange); text-decoration: none; display: block; margin-top: 10px; }
+        input, textarea, select { width: 100%; padding: 18px; margin-bottom: 20px; border: 2px solid #E2E8F0; border-radius: 12px; font-family: inherit; font-size: 1rem; background: #f8fafc; }
+        .btn-submit { background: var(--accent-orange); color: white; border: none; padding: 22px; width: 100%; font-weight: 800; cursor: pointer; border-radius: 12px; font-size: 1.1rem; box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2); }
 
-        input, textarea { width: 100%; padding: 18px; margin-bottom: 15px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: inherit; font-size: 1rem; background: #F8FAFC; }
-        .btn-submit { background: var(--primary-dark); color: white; border: none; padding: 20px; width: 100%; font-weight: 800; cursor: pointer; border-radius: 8px; transition: 0.3s; }
-        .btn-submit:hover { background: var(--accent-orange); }
+        /* --- Footer --- */
+        footer { background: #fff; padding: 80px 10% 40px; border-top: 1px solid #eee; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { font-weight: 800; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 25px; color: var(--primary-dark); }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { text-decoration: none; color: var(--text-muted); font-size: 0.95rem; }
+        .footer-bottom { border-top: 1px solid #eee; padding-top: 30px; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
 
-        @media (max-width: 900px) { #contact-split, .diff-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 1024px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 900px) { .about, .op-grid, .why-grid, .contact-container, .footer-grid { grid-template-columns: 1fr; } .nav-links { display: none; } h1 { font-size: 3rem; } }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="#" class="logo">FIX<span>REST</span></a>
-        <a href="#contact-split" class="btn-nav-arrow">Get in Touch <span>&rarr;</span></a>
+        <a href="#home"><img src="https://github.com/fixrestsolutions-netizen/fixrestsolutions/blob/3b60d8f191e9f8aca12fb19e66872519bcf448fc/assets/logo-removebg-preview.png?raw=true" class="logo-img" alt="FixRest Logo"></a>
+        <div class="nav-links">
+            <a href="#about" class="nav-item">About</a>
+            <a href="#ops" class="nav-item">Operations</a>
+            <a href="#why" class="nav-item">Expertise</a>
+            <a href="#contact-split" class="btn-nav-arrow">Get in Touch</a>
+        </div>
     </nav>
 
     <section id="home">
         <div class="fade-in">
-            <span class="tagline">Bespoke Co-Hosting</span>
-            <h1 style="font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">Asset First. <br>Income Always.</h1>
-            <p style="max-width: 600px; font-size: 1.2rem; color: var(--text-muted);">We manage high-yield properties in Durban and Johannesburg with a technical edge that traditional agencies lack.</p>
+            <span class="tagline">Bespoke Co-Hosting Established 2024</span>
+            <h1>Airbnb Excellence <br>Mastered.</h1>
+            <p>FixRest is Durban and Johannesburg's premier stewardship agency. We transform properties into luxury short-term assets through technical care and elite logistics.</p>
+            
+            <br><br>
+            <a href="#contact-split" class="btn-nav-arrow" style="font-size: 1.2rem;">Start the Partnership</a>
         </div>
     </section>
 
-    <section id="difference">
+    <section id="about">
         <div class="fade-in">
-            <span class="tagline">The FixRest Edge</span>
-            <h2>How We Are Different</h2>
-            <div class="diff-grid">
-                <div class="diff-item">
-                    <h4>Logistics Over Listings</h4>
-                    <p>Most agencies focus on the "app." We focus on the asset. We ensure your property stays in showroom condition through our private database of vetted maintenance professionals.</p>
-                </div>
-                <div class="diff-item">
-                    <h4>The Ngaoyi Standard</h4>
-                    <p>Cleanliness is non-negotiable. We utilize <b>Ngaoyi Cleaning</b> exclusively for all turnovers, guaranteeing hospital-grade standards and a constant stream of 5-star reviews.</p>
-                </div>
-                <div class="diff-item">
-                    <h4>Damage Control 24/7</h4>
-                    <p>Because our roots are in property maintenance, we resolve plumbing, electrical, or structural issues instantly—often before the guest even notices.</p>
-                </div>
-                <div class="diff-item">
-                    <h4>Dynamic Performance</h4>
-                    <p>We combine human hospitality with algorithmic pricing to ensure you are consistently capturing the highest possible yield in your specific suburb.</p>
-                </div>
+            <span class="tagline">Our Stewardship</span>
+            <h2>Established 2024. <br>Built on Technical Integrity.</h2>
+            <p>At FixRest, we believe property management is an act of preservation. Since our inception in 2024, we have bridged the gap between high-end hospitality and technical property care.</p>
+            <br>
+            <p>Our background in property maintenance ensures that your investment remains in pristine condition, allowing you to enjoy truly passive income while we handle the operational load.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000" class="about-img fade-in" alt="Modern Airbnb Property">
+    </section>
+
+    <section id="ops">
+        <div class="fade-in">
+            <span class="tagline">Operational Infrastructure</span>
+            <h2>High-Performance Logistics</h2>
+            <p>We leverage specialized divisions to ensure that every turnover is flawless and every maintenance request is handled by a professional.</p>
+        </div>
+        
+        <div class="op-grid">
+            <div class="op-card fade-in">
+                <h3>Ngaoyi Cleaning Solutions</h3>
+                <p>We utilize <b>Ngaoyi Cleaning</b> as our exclusive turnover partner. Every stay is prepared following a hotel-standard protocol that covers sanitation, staging, and amenity restocking.</p>
+                
+            </div>
+
+            <div class="op-card fade-in">
+                <h3>Vetted Contractor Network</h3>
+                <p>Technical oversight is the heartbeat of FixRest. We maintain a private database of vetted plumbers, electricians, and handymen who prioritize our properties 24/7.</p>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="why">
+        <div class="fade-in">
+            <span class="tagline" style="color: rgba(255,255,255,0.7);">The FixRest Difference</span>
+            <h2>Why Owners Partner With Us</h2>
+        </div>
+        <div class="why-grid">
+            <div class="why-card fade-in">
+                <h3>Asset Preservation</h3>
+                <p>We perform weekly audits to ensure your property's resale value is protected. We aren't just app managers; we are asset stewards.</p>
+            </div>
+            <div class="why-card fade-in">
+                <h3>Dynamic Yield Management</h3>
+                <p>We adjust rates hourly based on local demand in Durban and Johannesburg, ensuring your property is priced at the market's peak.</p>
+            </div>
+            <div class="why-card fade-in">
+                <h3>Vetted Guest Access</h3>
+                <p>We utilize high-level screening protocols to ensure only respectful, high-quality guests enter your space.</p>
             </div>
         </div>
     </section>
 
     <section id="contact-split">
-        <div class="contact-logo-side">
-            <h1 style="font-size: 4rem; font-weight: 900;">FIX<span>REST</span></h1>
-            <p style="color: rgba(255,255,255,0.6); margin-top: 10px;">Premium Co-Hosting</p>
-        </div>
-        <div class="contact-form-side">
-            <span class="tagline">Contact Us</span>
-            <h2>Let's Start Your Forecast.</h2>
-            <div class="contact-info">
-                <span>Direct Line: (+27) 00 000 0000</span>
-                <a href="mailto:fixrestsolutions@gmail.com">fixrestsolutions@gmail.com</a>
+        <div class="contact-container fade-in">
+            <div class="contact-logo-side">
+                <img src="https://github.com/fixrestsolutions-netizen/fixrestsolutions/blob/3b60d8f191e9f8aca12fb19e66872519bcf448fc/assets/logo-removebg-preview.png?raw=true" style="width: 180px; margin-bottom: 40px;" alt="FixRest">
+                <p style="color: #CBD5E0;">✉ fixrestsolutions@gmail.com</p>
+                <p style="color: #CBD5E0;">📞 (+27) 000 000 0000</p>
             </div>
-            <form id="contactForm">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <input type="text" name="area" placeholder="Property Suburb (e.g. Umhlanga)" required>
-                <textarea name="details" rows="5" placeholder="Tell us about the property (e.g. 2 Bed / Sea View)"></textarea>
-                <button type="submit" class="btn-submit" id="submitBtn">Request Forecast &rarr;</button>
-            </form>
-            <p id="msg" style="margin-top: 20px; font-weight: 700;"></p>
+            
+            <div class="contact-form-side">
+                <span class="tagline">Data-Driven Stewardship</span>
+                <h2>Inquire About Your Property</h2>
+                <form id="lead-form">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="text" name="area" placeholder="Property Location (e.g. Umhlanga Rocks)" required>
+                    <textarea name="details" rows="4" placeholder="Property Details (Bedrooms, Amenities, etc.)"></textarea>
+                    <button type="submit" class="btn-submit" id="btn-submit">SEND INQUIRY</button>
+                </form>
+                <div id="form-msg" style="margin-top: 20px; font-weight: 800; text-align: center;"></div>
+            </div>
         </div>
     </section>
 
-    <script>
-        // Animations
-        const obs = new IntersectionObserver((es) => {
-            es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <img src="https://github.com/fixrestsolutions-netizen/fixrestsolutions/blob/3b60d8f191e9f8aca12fb19e66872519bcf448fc/assets/logo-removebg-preview.png?raw=true" style="height: 60px; margin-bottom: 20px;" alt="FixRest Footer">
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Durban & Johannesburg's leading co-hosting agency. Dedicated to property preservation and high-yield hospitality. Est. 2024.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ops">Operations</a></li>
+                    <li><a href="#why">Why FixRest</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Service Areas</h4>
+                <ul>
+                    <li><a href="#">Umhlanga Rocks</a></li>
+                    <li><a href="#">Sandton CBD</a></li>
+                    <li><a href="#">Rosebank / Melrose</a></li>
+                    <li><a href="#">Durban North Coast</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Social</h4>
+                <ul>
+                    <li><a href="https://instagram.com/fixrest" target="_blank">FixRest Instagram</a></li>
+                    <li><a href="https://instagram.com/ngaoyicleaning" target="_blank">Ngaoyi Cleaning Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FixRest Solutions. All Rights Reserved.</p>
+            <p>Hospitality. Technicality. Stewardship.</p>
+        </div>
+    </footer>
 
-        // Form Script
-        const form = document.getElementById('contactForm');
-        const msg = document.getElementById('msg');
-        const btn = document.getElementById('submitBtn');
+    <script>
+        // --- Intersection Observer for Fade-In ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // --- Form Logic ---
+        const form = document.getElementById('lead-form');
+        const btn = document.getElementById('btn-submit');
+        const msg = document.getElementById('form-msg');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            btn.innerHTML = "Sending...";
-            btn.disabled = true;
-
-            // Replace with your Google Script URL
-            fetch('YOUR_WEB_APP_URL', { method: 'POST', body: new FormData(form) })
+            btn.innerText = "Processing..."; btn.disabled = true;
+            
+            // Note: Replace the URL below with your Google Apps Script Web App URL
+            fetch('YOUR_GOOGLE_SCRIPT_URL_HERE', { method: 'POST', body: new FormData(form) })
             .then(res => {
-                msg.innerHTML = "Forecast Request Sent! We'll be in touch.";
-                msg.style.color = "green";
+                msg.innerText = "Success! We'll be in touch shortly.";
+                msg.style.color = "#10B981";
                 form.reset();
             })
             .catch(err => {
-                msg.innerHTML = "Something went wrong. Please email us directly.";
-                msg.style.color = "red";
+                msg.innerText = "Connection Error. Please email us.";
+                msg.style.color = "#EF4444";
             })
             .finally(() => {
-                btn.innerHTML = "Request Forecast &rarr;";
-                btn.disabled = false;
+                btn.innerText = "SEND INQUIRY"; btn.disabled = false;
             });
         });
     </script>
