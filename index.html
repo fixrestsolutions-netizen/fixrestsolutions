@@ -807,6 +807,63 @@
             transform: translateY(-5px);
         }
 
+        /* --- Contact Page Styles (NEW) --- */
+        #contact-page {
+            background: var(--bg-alt);
+        }
+
+        .contact-hero {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            padding: 4rem;
+            border-radius: var(--radius);
+            height: fit-content;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-method {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .general-form-card {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
         /* --- Buttons --- */
         .btn-cta {
             display: inline-flex;
@@ -977,6 +1034,10 @@
             .showcase-slider {
                 height: 50vh;
             }
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         @media (max-width: 600px) {
@@ -1008,7 +1069,9 @@
             .step-card,
             .checklist-item,
             .feature-card,
-            .tech-card {
+            .tech-card,
+            .contact-info,
+            .general-form-card {
                 padding: 2rem; 
             }
             .btn-cta {
@@ -1051,7 +1114,8 @@
             <a href="#" class="nav-home active">Home</a>
             <a href="#" class="nav-about">About</a>
             <a href="#" class="nav-ops">Operations</a>
-            <a href="#" class="nav-contact btn-nav-arrow">Get in Touch</a>
+            <a href="#" class="nav-contact">Contact</a>
+            <a href="#" class="nav-revenue btn-nav-arrow">Revenue Forecast</a>
         </div>
     </nav>
 
@@ -1066,7 +1130,7 @@
                     <p class="lead">FixRest is not just an Airbnb management app; we are a dedicated logistics agency serving the discerning property owner. Since 2024, we have redefined the short-term rental market by prioritizing the one thing other agencies overlook: <span class="highlight">The Technical Health of Your Asset.</span></p>
                     <p>From the coastal luxury of Umhlanga to the corporate skyline of Sandton, we transform residential homes into high-performing, passive income engines.</p>
                     
-                    <button class="btn-cta nav-contact" style="margin-top: 1rem;">
+                    <button class="btn-cta nav-revenue" style="margin-top: 1rem;">
                         Request Your Revenue Forecast
                         <span style="font-size: 1.3rem;">→</span>
                     </button>
@@ -1269,7 +1333,7 @@
                 <div style="text-align: center; margin: 6rem 0 4rem; padding: 4rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius); color: white;">
                     <h2 style="color: white;">Your Property Has the Potential to Earn More</h2>
                     <p style="color: var(--text-white); opacity: 0.9; max-width: 600px; margin: 1.5rem auto 2.5rem;">Let FixRest unlock its full revenue potential with our data-driven approach to premium property management.</p>
-                    <button class="btn-cta nav-contact" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
+                    <button class="btn-cta nav-revenue" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
                         Request Your Custom Revenue Forecast
                         <span style="font-size: 1.5rem;">→</span>
                     </button>
@@ -1354,7 +1418,7 @@
                 <div style="text-align: center; margin: 6rem 0 4rem; padding: 4rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius); color: white;">
                     <h2 style="color: white;">Built on Technical Integrity</h2>
                     <p style="color: var(--text-white); opacity: 0.9; max-width: 600px; margin: 1.5rem auto 2.5rem;">Join property owners who trust FixRest to protect their investment while maximizing returns.</p>
-                    <button class="btn-cta nav-contact" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
+                    <button class="btn-cta nav-revenue" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
                         Start Your Partnership
                         <span style="font-size: 1.5rem;">→</span>
                     </button>
@@ -1501,43 +1565,125 @@
                 <div style="text-align: center; margin: 6rem 0 4rem; padding: 4rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius); color: white;">
                     <h2 style="color: white;">Ready for Operational Excellence?</h2>
                     <p style="color: var(--text-white); opacity: 0.9; max-width: 600px; margin: 1.5rem auto 2.5rem;">Experience the FixRest difference—where every detail is managed with precision and professionalism.</p>
-                    <button class="btn-cta nav-contact" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
+                    <button class="btn-cta nav-revenue" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
                         Optimize Your Operations
                         <span style="font-size: 1.5rem;">→</span>
                     </button>
                 </div>
             </div>
         </section>
+
+        <section id="contact-page" class="page">
+            <div class="hero-content">
+                <div class="contact-hero animate">
+                    <span class="tagline">Start the Conversation</span>
+                    <h1>Get in Touch</h1>
+                    <p class="subtitle">Whether you have a quick question or are ready to list your property, our team is here to help.</p>
+                </div>
+
+                <div class="contact-layout animate delay-1">
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Our support team is available Monday to Friday, 8am - 5pm. Emergency support for guests is available 24/7.</p>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon">✉</div>
+                            <div>
+                                <strong>Email Us</strong>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0; font-size: 0.95rem;">fixrestsolutions@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">📞</div>
+                            <div>
+                                <strong>Call Us</strong>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0; font-size: 0.95rem;">(+27) 000 000 0000</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">📍</div>
+                            <div>
+                                <strong>Service Areas</strong>
+                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0; font-size: 0.95rem;">Umhlanga Rocks, Durban North, Sandton CBD, Rosebank</p>
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                            <strong>Looking for a detailed projection?</strong>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">Use our specific forecasting tool to get data-driven insights for your property.</p>
+                            <button class="btn-cta nav-revenue" style="background: white; color: var(--primary); width: 100%; justify-content: center; margin-top: 1rem;">
+                                Go to Revenue Forecast
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="general-form-card">
+                        <h3 style="margin-bottom: 1.5rem;">General Inquiry</h3>
+                        <form id="generalForm" style="display: grid; gap: 1.5rem;">
+                            <input type="hidden" name="formType" value="General Contact">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Full Name</label>
+                                <input type="text" name="name" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email Address</label>
+                                <input type="email" name="email" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Subject</label>
+                                <select name="subject" style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit; background: white;">
+                                    <option value="General Question">General Question</option>
+                                    <option value="Partnership Inquiry">Partnership Inquiry</option>
+                                    <option value="Maintenance Vendor Application">Maintenance Vendor Application</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Message</label>
+                                <textarea name="message" rows="5" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;"></textarea>
+                            </div>
+                            <button type="submit" class="btn-cta" style="width: 100%; justify-content: center;">
+                                Send Message
+                            </button>
+                        </form>
+                        <div id="generalFormResponse" style="margin-top: 1.5rem; text-align: center; font-weight: 600;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div id="contactModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 2000; align-items: center; justify-content: center; padding: 2rem;">
-        <div style="background: white; border-radius: var(--radius); max-width: 600px; width: 100%; position: relative;">
-            <button onclick="closeModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text); z-index: 2;">×</button>
+    <div id="revenueModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 2000; align-items: center; justify-content: center; padding: 2rem;">
+        <div style="background: white; border-radius: var(--radius); max-width: 600px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto;">
+            <button onclick="closeRevenueModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text); z-index: 2;">×</button>
             
             <div style="padding: 3rem;">
                 <h2 style="margin-bottom: 1rem;">Request Your Revenue Forecast</h2>
                 <p style="margin-bottom: 2rem; color: var(--text-light);">Complete this form and receive a detailed projection of your property's earning potential within 24 hours.</p>
                 
                 <form id="revenueForm" style="display: grid; gap: 1.5rem;">
+                    <input type="hidden" name="formType" value="Revenue Forecast">
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Full Name</label>
-                            <input type="text" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
+                            <input type="text" name="name" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
                         </div>
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Email Address</label>
-                            <input type="email" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
+                            <input type="email" name="email" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
                         </div>
                     </div>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Phone Number</label>
-                            <input type="tel" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
+                            <input type="tel" name="phone" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;">
                         </div>
                         <div>
                             <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Property Location</label>
-                            <select required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit; background: white;">
+                            <select name="location" required style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit; background: white;">
                                 <option value="">Select Area</option>
                                 <option value="umhlanga">Umhlanga Rocks</option>
                                 <option value="ballito">Ballito</option>
@@ -1552,7 +1698,7 @@
                     
                     <div>
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Property Details</label>
-                        <textarea rows="4" placeholder="Bedrooms, amenities, unique features, etc." style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;"></textarea>
+                        <textarea name="details" rows="4" placeholder="Bedrooms, amenities, unique features, etc." style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;"></textarea>
                     </div>
                     
                     <button type="submit" style="background: var(--accent); color: white; border: none; padding: 1.25rem; border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: var(--transition);">
@@ -1560,7 +1706,7 @@
                     </button>
                 </form>
                 
-                <div id="formResponse" style="margin-top: 1.5rem; text-align: center; font-weight: 600;"></div>
+                <div id="revenueFormResponse" style="margin-top: 1.5rem; text-align: center; font-weight: 600;"></div>
             </div>
         </div>
     </div>
@@ -1614,6 +1760,9 @@
     </footer>
 
     <script>
+        // --- CONFIGURATION ---
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOMlByKsZFNXeeL1UrI43C5xdYcFGMZFl51jhNVlfwjRy6bC-0NDnRtpqY6-_BTpqK/exec'; // <--- PASTE YOUR URL HERE
+
         // Initialize animations
         document.addEventListener('DOMContentLoaded', () => {
             // Add scroll effect to nav
@@ -1648,42 +1797,57 @@
         });
 
         // Modal Functions
-        function openModal() {
-            document.getElementById('contactModal').style.display = 'flex';
+        function openRevenueModal() {
+            document.getElementById('revenueModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('contactModal').style.display = 'none';
+        function closeRevenueModal() {
+            document.getElementById('revenueModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
-        // Form submission
-        document.getElementById('revenueForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const submitBtn = e.target.querySelector('button[type="submit"]');
-            const responseDiv = document.getElementById('formResponse');
-            
-            submitBtn.innerHTML = 'Generating Forecast...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                responseDiv.innerHTML = 'Thank you! Your detailed revenue forecast will be emailed within 24 hours.';
-                responseDiv.style.color = '#10B981';
+        // Generic Form Submission Handler
+        function handleFormSubmit(formId, responseId, successMessage) {
+            const form = document.getElementById(formId);
+            if (!form) return;
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const responseDiv = document.getElementById(responseId);
+                const originalBtnText = submitBtn.innerText;
                 
-                // Reset form
-                e.target.reset();
+                submitBtn.innerText = 'Sending...';
+                submitBtn.disabled = true;
+                responseDiv.innerHTML = '';
                 
-                // Close modal after delay
-                setTimeout(() => {
-                    closeModal();
-                    submitBtn.innerHTML = 'Get My Revenue Forecast';
+                fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    responseDiv.innerHTML = successMessage;
+                    responseDiv.style.color = '#10B981';
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        if (formId === 'revenueForm') closeRevenueModal();
+                        submitBtn.innerText = originalBtnText;
+                        submitBtn.disabled = false;
+                        responseDiv.innerHTML = '';
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    responseDiv.innerHTML = 'Error! Please email us directly.';
+                    responseDiv.style.color = '#EF4444';
                     submitBtn.disabled = false;
-                    responseDiv.innerHTML = '';
-                }, 3000);
-            }, 2000);
-        });
+                    submitBtn.innerText = originalBtnText;
+                });
+            });
+        }
+
+        // Initialize Forms
+        handleFormSubmit('revenueForm', 'revenueFormResponse', 'Success! Your forecast request has been sent.');
+        handleFormSubmit('generalForm', 'generalFormResponse', 'Message sent successfully! We will be in touch.');
 
         // Page Navigation System
         class PageManager {
@@ -1691,7 +1855,8 @@
                 this.pages = {
                     home: document.getElementById('home-page'),
                     about: document.getElementById('about-page'),
-                    ops: document.getElementById('ops-page')
+                    ops: document.getElementById('ops-page'),
+                    contact: document.getElementById('contact-page')
                 };
                 
                 this.currentPage = 'home';
@@ -1704,15 +1869,16 @@
                     home: '.nav-home',
                     about: '.nav-about',
                     ops: '.nav-ops',
-                    contact: '.nav-contact'
+                    contact: '.nav-contact',
+                    revenue: '.nav-revenue'
                 };
                 
                 for (const [page, selector] of Object.entries(navConfig)) {
                     document.querySelectorAll(selector).forEach(link => {
                         link.addEventListener('click', (e) => {
                             e.preventDefault();
-                            if (page === 'contact') {
-                                openModal();
+                            if (page === 'revenue') {
+                                openRevenueModal();
                             } else {
                                 this.showPage(page);
                                 this.updateNavActive(page);
@@ -1737,8 +1903,10 @@
                 });
                 
                 // Show selected page
-                this.pages[pageName].classList.add('active');
-                this.currentPage = pageName;
+                if(this.pages[pageName]) {
+                    this.pages[pageName].classList.add('active');
+                    this.currentPage = pageName;
+                }
                 
                 // Scroll to top
                 document.getElementById('page-container').scrollTop = 0;
@@ -1762,6 +1930,8 @@
                 // Add animation classes to new page content
                 setTimeout(() => {
                     const currentPage = document.querySelector('.page.active');
+                    if (!currentPage) return;
+                    
                     const animateElements = currentPage.querySelectorAll('.animate');
                     
                     animateElements.forEach((el, index) => {
