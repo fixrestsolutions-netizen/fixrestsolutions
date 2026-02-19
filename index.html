@@ -122,7 +122,6 @@
             color: var(--accent); 
         }
         
-        /* Arrow-Only Get in Touch Button */
         .btn-nav-arrow { 
             background: none; 
             border: none; 
@@ -157,7 +156,6 @@
             overflow: hidden;
         }
 
-        /* --- Pages (Sections) --- */
         .page {
             position: absolute;
             top: 0;
@@ -179,7 +177,6 @@
             transform: translateY(0);
         }
 
-        /* --- Global Content Styles --- */
         .tagline { 
             color: var(--accent); 
             font-weight: 800; 
@@ -197,29 +194,10 @@
             line-height: 1.1;
         }
         
-        h1 { 
-            font-size: 4.5rem; 
-            color: var(--primary); 
-            margin-bottom: 1.5rem; 
-        }
-        
-        h2 { 
-            font-size: 3.5rem; 
-            color: var(--primary); 
-            margin-bottom: 1.5rem; 
-        }
-        
-        h3 { 
-            font-size: 2.5rem; 
-            color: var(--primary); 
-            margin-bottom: 1.5rem; 
-        }
-        
-        h4 {
-            font-size: 1.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
+        h1 { font-size: 4.5rem; color: var(--primary); margin-bottom: 1.5rem; }
+        h2 { font-size: 3.5rem; color: var(--primary); margin-bottom: 1.5rem; }
+        h3 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1.5rem; }
+        h4 { font-size: 1.5rem; color: var(--primary); margin-bottom: 1rem; }
         
         .subtitle {
             font-size: 1.5rem;
@@ -229,44 +207,18 @@
             max-width: 800px;
         }
         
-        p { 
-            max-width: 800px; 
-            font-size: 1.125rem; 
-            color: var(--text); 
-            margin-bottom: 1.5rem; 
-        }
+        p { max-width: 800px; font-size: 1.125rem; color: var(--text); margin-bottom: 1.5rem; }
         
-        .lead {
-            font-size: 1.25rem;
-            font-weight: 500;
-            color: var(--primary-light);
-        }
-        
-        .highlight {
-            color: var(--accent);
-            font-weight: 600;
-        }
+        .lead { font-size: 1.25rem; font-weight: 500; color: var(--primary-light); }
+        .highlight { color: var(--accent); font-weight: 600; }
 
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
+        .stat-number { font-size: 3.5rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.9rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
 
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- SLIDER STYLES (NEW) --- */
         .showcase-slider {
             position: relative;
             width: 100%;
-            height: 65vh; /* Large impactful height */
+            height: 65vh;
             min-height: 500px;
             margin: 3rem 0 5rem 0;
             border-radius: var(--radius);
@@ -276,826 +228,161 @@
 
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0;
             transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            background-size: cover;
-            background-position: center;
+            background-size: cover; background-position: center;
         }
 
-        .slide.active {
-            opacity: 1;
-            transform: scale(1.02); /* Subtle zoom effect */
-            transition: opacity 1.5s ease-in-out, transform 6s ease;
-        }
+        .slide.active { opacity: 1; transform: scale(1.02); transition: opacity 1.5s ease-in-out, transform 6s ease; }
+        .slide::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent); }
 
-        /* Gradient Overlay for Text Readability */
-        .slide::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-        }
+        .slide-content { position: absolute; bottom: 3rem; left: 3rem; z-index: 2; color: white; max-width: 600px; }
+        .slide-tag { background: var(--accent); color: white; padding: 0.5rem 1.2rem; border-radius: 50px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; display: inline-block; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .slide-content h3 { color: white; font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .slide-content p { color: rgba(255,255,255,0.9); font-size: 1.1rem; }
 
-        .slide-content {
-            position: absolute;
-            bottom: 3rem;
-            left: 3rem;
-            z-index: 2;
-            color: white;
-            max-width: 600px;
-        }
+        #home-page { background: linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075') center/cover fixed; }
+        .hero-content { max-width: 1400px; margin: 0 auto; }
+        .hero-header { margin-bottom: 2rem; }
 
-        .slide-tag {
-            background: var(--accent);
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-            display: inline-block;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .slide-content h3 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .slide-content p {
-            color: rgba(255,255,255,0.9);
-            font-size: 1.1rem;
-        }
-
-        /* --- Home Page --- */
-        #home-page { 
-            background: linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), 
-                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075') center/cover fixed;
-        }
-
-        .hero-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .hero-header {
-            margin-bottom: 2rem;
-        }
-
-        /* Section 1: The FixRest Difference */
         .difference-section {
             background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%);
-            border-radius: var(--radius);
-            padding: 5rem;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .difference-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--accent), var(--accent-light));
-        }
-
-        .promise-card {
-            background: var(--primary);
-            color: white;
-            padding: 3rem;
-            border-radius: var(--radius);
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promise-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%);
-        }
-
-        .promise-card h3 {
-            color: white;
-        }
-
-        /* Section 2: Core Pillars */
-        .pillars-section {
-            margin: 6rem 0;
-        }
-
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pillar-card {
-            background: white;
-            padding: 3rem 2.5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pillar-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .pillar-card:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent), var(--accent-light));
-        }
-
-        .pillar-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .pillar-features {
-            list-style: none;
-            margin-top: 1.5rem;
-        }
-
-        .pillar-features li {
-            margin-bottom: 0.75rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .pillar-features li:before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: 800;
-        }
-
-        /* Section 3: Market Specialization */
-        .markets-section {
-            background: var(--primary);
-            color: white;
-            padding: 6rem 5%;
-            margin: 4rem -5% 0;
-            position: relative;
-        }
-
-        .markets-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(to bottom, var(--bg), var(--primary));
-        }
-
-        .markets-section h2,
-        .markets-section h3,
-        .markets-section h4 {
-            color: white;
-        }
-
-        .markets-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .market-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-dark);
-            padding: 3rem;
-            border-radius: var(--radius);
-            transition: var(--transition);
-        }
-
-        .market-card:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .market-areas {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .market-tag {
-            background: rgba(249, 115, 22, 0.1);
-            color: var(--accent-light);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid rgba(249, 115, 22, 0.2);
-        }
-
-        /* Section 4: Transparency & Trust */
-        .transparency-section {
-            margin: 6rem 0;
-        }
-
-        .portal-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-item {
-            background: var(--bg-alt);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            border-left: 4px solid var(--accent);
-        }
-
-        /* Section 5: Est. 2024 Advantage */
-        .advantage-section {
-            background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%);
-            border-radius: var(--radius);
-            padding: 5rem;
-            margin: 4rem 0;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .tech-item {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            background: white;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .tech-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .tech-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent);
-        }
-
-        /* --- About Page Styles --- */
-        #about-page { 
-            background: linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), 
-                        url('https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=2000') center/cover fixed;
-        }
-
-        .about-hero {
-            max-width: 1200px;
-            margin: 0 auto 6rem;
-        }
-
-        .founding-story {
-            background: white;
-            padding: 5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            margin-bottom: 4rem;
-        }
-
-        .mission-statement {
-            background: var(--primary);
-            color: white;
-            padding: 4rem;
-            border-radius: var(--radius);
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .mission-statement:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%);
-        }
-
-        .mission-statement h3 {
-            color: white;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-
-        .value-card {
-            background: white;
-            padding: 3rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .value-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .value-number {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            opacity: 0.2;
-        }
-
-        .onboarding-journey {
-            background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%);
-            border-radius: var(--radius);
-            padding: 5rem;
-            margin: 4rem 0;
-        }
-
-        .journey-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .step-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            text-align: center;
-            position: relative;
-        }
-
-        .step-number {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        /* --- Operations Page Styles --- */
-        #ops-page { 
-            background: var(--bg);
-        }
-
-        .ops-hero {
-            max-width: 1200px;
-            margin: 0 auto 6rem;
-        }
-
-        .ops-hero h1 {
-            font-size: 4rem;
-        }
-
-        .ngaoyi-section {
-            background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%);
-            color: white;
-            padding: 6rem;
-            border-radius: var(--radius);
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ngaoyi-section:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%);
-        }
-
-        .ngaoyi-section h2,
-        .ngaoyi-section h3 {
-            color: white;
-        }
-
-        .checklist-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .checklist-item {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: var(--transition);
-        }
-
-        .checklist-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .maintenance-section {
-            margin: 6rem 0;
-        }
-
-        .maintenance-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: var(--bg-alt);
-            padding: 3rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .preventative-care {
-            background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%);
-            border-radius: var(--radius);
-            padding: 5rem;
-            margin: 4rem 0;
-            border-left: 4px solid var(--accent);
-        }
-
-        .tech-stack-section {
-            margin: 6rem 0;
-        }
-
-        .tech-stack-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .tech-card {
-            text-align: center;
-            padding: 3rem;
-            background: white;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .tech-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        /* --- Contact Page Styles (NEW) --- */
-        #contact-page {
-            background: var(--bg-alt);
-        }
-
-        .contact-hero {
-            max-width: 1200px;
-            margin: 0 auto 6rem;
-        }
-
-        .contact-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .contact-info {
-            background: var(--primary);
-            color: white;
-            padding: 4rem;
-            border-radius: var(--radius);
-            height: fit-content;
-        }
-
-        .contact-info h3 {
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .contact-method {
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .method-icon {
-            font-size: 1.5rem;
-            background: rgba(255,255,255,0.1);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .general-form-card {
-            background: white;
-            padding: 3rem;
-            border-radius: var(--radius);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-        }
-
-        /* --- Buttons --- */
-        .btn-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--accent);
-            color: white;
-            padding: 1.25rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-cta:hover {
-            background: var(--accent-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3);
-            gap: 1.25rem;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--border);
-            padding: 1.125rem 2.5rem;
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-alt);
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-
-        /* Stats Section */
-        .stats-section {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin: 4rem 0;
-            padding: 3rem;
-            background: var(--bg-alt);
-            border-radius: var(--radius);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        /* Footer */
-        footer { 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-            right: 0; 
-            padding: 2rem 5%; 
-            background: white; 
-            border-top: 1px solid var(--border);
-            transform: translateY(100%); 
-            transition: var(--transition);
-            z-index: 999;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        footer.visible { 
-            transform: translateY(0); 
-        }
-        
-        .footer-grid { 
-            display: grid; 
-            grid-template-columns: 2fr 1fr 1fr 1fr; 
-            gap: 3rem; 
-        }
-        
-        .footer-col h4 { 
-            font-weight: 800; 
-            font-size: 0.8rem; 
-            margin-bottom: 1.5rem; 
-            color: var(--primary); 
-            text-transform: uppercase; 
-            letter-spacing: 1px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-        
-        .footer-col ul { 
-            list-style: none; 
-        }
-        
-        .footer-col li { 
-            margin-bottom: 0.75rem; 
-        }
-        
-        .footer-col a { 
-            text-decoration: none; 
-            color: var(--text); 
-            font-size: 0.9rem; 
-            transition: var(--transition);
-        }
-        
-        .footer-col a:hover { 
-            color: var(--accent); 
-        }
-        
-        .footer-bottom { 
-            margin-top: 3rem; 
-            padding-top: 1.5rem; 
-            border-top: 1px solid var(--border); 
-            text-align: center; 
-            font-size: 0.85rem; 
-            color: var(--text-light);
-        }
+            border-radius: var(--radius); padding: 5rem; margin: 4rem 0; position: relative; overflow: hidden; border: 1px solid var(--border);
+        }
+        .difference-section:before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: linear-gradient(to bottom, var(--accent), var(--accent-light)); }
+
+        .promise-card { background: var(--primary); color: white; padding: 3rem; border-radius: var(--radius); margin-top: 3rem; position: relative; overflow: hidden; }
+        .promise-card:before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(249,115,22,0.1) 0%, transparent 70%); }
+        .promise-card h3 { color: white; }
+
+        .pillars-section { margin: 6rem 0; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .pillar-card { background: white; padding: 3rem 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); position: relative; overflow: hidden; }
+        .pillar-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: var(--shadow-lg); }
+        .pillar-card:before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(to right, var(--accent), var(--accent-light)); }
+        .pillar-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+        .pillar-features { list-style: none; margin-top: 1.5rem; }
+        .pillar-features li { margin-bottom: 0.75rem; padding-left: 1.5rem; position: relative; }
+        .pillar-features li:before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-weight: 800; }
+
+        /* Tiers specific styles */
+        .tier-card {
+            background: white; padding: 3rem; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition);
+        }
+        .tier-card:hover { box-shadow: var(--shadow-lg); border-color: var(--accent); }
+        .tier-card.premium {
+            background: var(--primary); color: white; border-color: var(--primary);
+        }
+        .tier-card.premium h3, .tier-card.premium p { color: white; }
+        .tier-card.premium .pillar-features li:before { color: var(--accent-light); }
+        .tier-card.premium .pillar-features li { color: rgba(255,255,255,0.9); }
+
+        .markets-section { background: var(--primary); color: white; padding: 6rem 5%; margin: 4rem -5% 0; position: relative; }
+        .markets-section:before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 100px; background: linear-gradient(to bottom, var(--bg), var(--primary)); }
+        .markets-section h2, .markets-section h3, .markets-section h4 { color: white; }
+        .markets-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3rem; margin-top: 3rem; }
+        .market-card { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-dark); padding: 3rem; border-radius: var(--radius); transition: var(--transition); }
+        .market-card:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-5px); }
+        .market-areas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+        .market-tag { background: rgba(249, 115, 22, 0.1); color: var(--accent-light); padding: 0.5rem 1rem; border-radius: 100px; font-size: 0.9rem; font-weight: 500; border: 1px solid rgba(249, 115, 22, 0.2); }
+
+        .transparency-section { margin: 6rem 0; }
+        .portal-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+        .feature-item { background: var(--bg-alt); padding: 2.5rem; border-radius: var(--radius); border-left: 4px solid var(--accent); }
+
+        .advantage-section { background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%); border-radius: var(--radius); padding: 5rem; margin: 4rem 0; }
+        .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .tech-item { text-align: center; padding: 2.5rem 2rem; background: white; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+        .tech-item:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .tech-icon { font-size: 3rem; margin-bottom: 1.5rem; color: var(--accent); }
+
+        #about-page { background: linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), url('https://images.unsplash.com/photo-1560185007-cde436f6a4d0?q=80&w=2000') center/cover fixed; }
+        .about-hero { max-width: 1200px; margin: 0 auto 6rem; }
+        .founding-story { background: white; padding: 5rem; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); margin-bottom: 4rem; }
+        .mission-statement { background: var(--primary); color: white; padding: 4rem; border-radius: var(--radius); margin: 4rem 0; position: relative; overflow: hidden; }
+        .mission-statement:before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(249,115,22,0.2) 0%, transparent 70%); }
+        .mission-statement h3 { color: white; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 4rem 0; }
+        .value-card { background: white; padding: 3rem; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); text-align: center; }
+        .value-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: var(--shadow-lg); }
+        .value-number { font-size: 4rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 1.5rem; opacity: 0.2; }
+        .onboarding-journey { background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%); border-radius: var(--radius); padding: 5rem; margin: 4rem 0; }
+        .journey-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+        .step-card { background: white; padding: 2.5rem; border-radius: var(--radius); border: 1px solid var(--border); text-align: center; position: relative; }
+        .step-number { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; }
+
+        #ops-page { background: var(--bg); }
+        .ops-hero { max-width: 1200px; margin: 0 auto 6rem; }
+        .ops-hero h1 { font-size: 4rem; }
+        .ngaoyi-section { background: linear-gradient(135deg, var(--primary) 0%, #1E293B 100%); color: white; padding: 6rem; border-radius: var(--radius); margin: 4rem 0; position: relative; overflow: hidden; }
+        .ngaoyi-section:before { content: ''; position: absolute; top: 0; right: 0; width: 300px; height: 300px; background: radial-gradient(circle, rgba(249,115,22,0.15) 0%, transparent 70%); }
+        .ngaoyi-section h2, .ngaoyi-section h3 { color: white; }
+        .checklist-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .checklist-item { background: rgba(255, 255, 255, 0.1); padding: 2.5rem; border-radius: var(--radius); border: 1px solid rgba(255, 255, 255, 0.2); transition: var(--transition); }
+        .checklist-item:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(-5px); }
+        .maintenance-section { margin: 6rem 0; }
+        .maintenance-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 3rem; }
+        .feature-card { background: var(--bg-alt); padding: 3rem; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+        .feature-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .preventative-care { background: linear-gradient(135deg, var(--bg-alt) 0%, #FFFFFF 100%); border-radius: var(--radius); padding: 5rem; margin: 4rem 0; border-left: 4px solid var(--accent); }
+        .tech-stack-section { margin: 6rem 0; }
+        .tech-stack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .tech-card { text-align: center; padding: 3rem; background: white; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+        .tech-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        #contact-page { background: var(--bg-alt); }
+        .contact-hero { max-width: 1200px; margin: 0 auto 6rem; }
+        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1400px; margin: 0 auto; }
+        .contact-info { background: var(--primary); color: white; padding: 4rem; border-radius: var(--radius); height: fit-content; }
+        .contact-info h3 { color: white; margin-bottom: 2rem; }
+        .contact-method { margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .method-icon { font-size: 1.5rem; background: rgba(255,255,255,0.1); width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        .general-form-card { background: white; padding: 3rem; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); }
+
+        .btn-cta { display: inline-flex; align-items: center; gap: 0.75rem; background: var(--accent); color: white; padding: 1.25rem 2.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; transition: var(--transition); font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: 0.5px; }
+        .btn-cta:hover { background: var(--accent-dark); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.3); gap: 1.25rem; }
+        .btn-secondary { background: transparent; color: var(--primary); border: 2px solid var(--border); padding: 1.125rem 2.5rem; }
+        .btn-secondary:hover { background: var(--bg-alt); border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        .stats-section { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin: 4rem 0; padding: 3rem; background: var(--bg-alt); border-radius: var(--radius); }
+        .stat-item { text-align: center; }
+
+        footer { position: fixed; bottom: 0; left: 0; right: 0; padding: 2rem 5%; background: white; border-top: 1px solid var(--border); transform: translateY(100%); transition: var(--transition); z-index: 999; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05); }
+        footer.visible { transform: translateY(0); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-col h4 { font-weight: 800; font-size: 0.8rem; margin-bottom: 1.5rem; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; font-family: 'Plus Jakarta Sans', sans-serif; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.75rem; }
+        .footer-col a { text-decoration: none; color: var(--text); font-size: 0.9rem; transition: var(--transition); }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.85rem; color: var(--text-light); }
 
-        /* --- Responsive Design --- */
         @media (max-width: 1200px) {
-            h1 { font-size: 3.5rem; }
-            h2 { font-size: 2.75rem; }
-            h3 { font-size: 2rem; }
-            .pillars-grid,
-            .markets-grid,
-            .portal-features,
-            .tech-grid,
-            .values-grid,
-            .journey-steps,
-            .checklist-grid,
-            .tech-stack-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .stats-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            h1 { font-size: 3.5rem; } h2 { font-size: 2.75rem; } h3 { font-size: 2rem; }
+            .pillars-grid, .markets-grid, .portal-features, .tech-grid, .values-grid, .journey-steps, .checklist-grid, .tech-stack-grid { grid-template-columns: repeat(2, 1fr); }
+            .stats-section { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 900px) {
-            h1 { font-size: 2.75rem; }
-            h2 { font-size: 2.25rem; }
-            h3 { font-size: 1.75rem; }
-            .pillars-grid,
-            .markets-grid,
-            .portal-features,
-            .tech-grid,
-            .footer-grid,
-            .values-grid,
-            .journey-steps,
-            .checklist-grid,
-            .tech-stack-grid,
-            .maintenance-features {
-                grid-template-columns: 1fr;
-            }
+            h1 { font-size: 2.75rem; } h2 { font-size: 2.25rem; } h3 { font-size: 1.75rem; }
+            .pillars-grid, .markets-grid, .portal-features, .tech-grid, .footer-grid, .values-grid, .journey-steps, .checklist-grid, .tech-stack-grid, .maintenance-features { grid-template-columns: 1fr; }
             .nav-links { gap: 1.5rem; }
-            .difference-section,
-            .advantage-section,
-            .founding-story,
-            .onboarding-journey,
-            .ngaoyi-section,
-            .preventative-care {
-                padding: 3rem;
-            }
-            .stats-section {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .showcase-slider {
-                height: 50vh;
-            }
-            .contact-layout {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
+            .difference-section, .advantage-section, .founding-story, .onboarding-journey, .ngaoyi-section, .preventative-care { padding: 3rem; }
+            .stats-section { grid-template-columns: 1fr; gap: 2rem; }
+            .showcase-slider { height: 50vh; }
+            .contact-layout { grid-template-columns: 1fr; gap: 2rem; }
         }
-
         @media (max-width: 600px) {
-            .nav-links { 
-                display: none; 
-            }
-            h1 { 
-                font-size: 2.25rem; 
-            }
-            h2 { 
-                font-size: 1.875rem; 
-            }
-            h3 { 
-                font-size: 1.5rem; 
-            }
-            .subtitle {
-                font-size: 1.25rem;
-            }
-            .page { 
-                padding: 3rem 5%; 
-            }
-            .difference-section,
-            .advantage-section,
-            .pillar-card,
-            .market-card,
-            .feature-item,
-            .tech-item,
-            .value-card,
-            .step-card,
-            .checklist-item,
-            .feature-card,
-            .tech-card,
-            .contact-info,
-            .general-form-card {
-                padding: 2rem; 
-            }
-            .btn-cta {
-                width: 100%;
-                justify-content: center;
-            }
+            .nav-links { display: none; }
+            h1 { font-size: 2.25rem; } h2 { font-size: 1.875rem; } h3 { font-size: 1.5rem; }
+            .subtitle { font-size: 1.25rem; }
+            .page { padding: 3rem 5%; }
+            .difference-section, .advantage-section, .pillar-card, .market-card, .feature-item, .tech-item, .value-card, .step-card, .checklist-item, .feature-card, .tech-card, .contact-info, .general-form-card, .tier-card { padding: 2rem; }
+            .btn-cta { width: 100%; justify-content: center; }
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeInUp 0.8s ease-out forwards; }
         .delay-1 { animation-delay: 0.1s; opacity: 0; }
         .delay-2 { animation-delay: 0.2s; opacity: 0; }
         .delay-3 { animation-delay: 0.3s; opacity: 0; }
@@ -1107,8 +394,7 @@
     <nav>
         <a href="#" class="nav-home">
             <img src="https://github.com/fixrestsolutions-netizen/fixrestsolutions/blob/3b60d8f191e9f8aca12fb19e66872519bcf448fc/assets/logo-removebg-preview.png?raw=true" 
-                 class="logo-img" 
-                 alt="FixRest Logo">
+                 class="logo-img" alt="FixRest Logo">
         </a>
         <div class="nav-links">
             <a href="#" class="nav-home active">Home</a>
@@ -1186,55 +472,71 @@
                     </div>
                 </div>
 
-                <div class="difference-section animate delay-3">
-                    <h2>Why "App-Only" Management Isn't Enough</h2>
-                    <p>Most Airbnb managers are simply marketing assistants—they upload photos and answer messages, but they disappear when a pipe bursts or a guest leaves a mess. <span class="highlight">FixRest is different.</span> We are built on a foundation of operational rigor.</p>
-                    <p>We understand that a short-term rental is a high-traffic commercial asset. It requires more than just a friendly smile; it requires a supply chain. FixRest provides a vertically integrated solution that combines algorithmic pricing strategies with boots-on-the-ground technical support.</p>
+                <div class="advantage-section animate delay-3" style="margin-top: 4rem;">
+                    <h2>Tailored Management Plans</h2>
+                    <p class="subtitle">Choose the level of stewardship that fits your investment strategy. We meet you where you are.</p>
                     
-                    <div class="promise-card">
-                        <h3>Our Promise</h3>
-                        <p>We don't just aim for bookings; we aim for <span style="color: var(--accent-light); font-weight: 600;">5-Star Asset Preservation.</span> Our goal is to ensure that your property is in better condition a year from now than it is today.</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                        <div class="tier-card">
+                            <h3>Partial Management</h3>
+                            <p class="lead" style="font-size: 1.1rem; color: var(--text-light); margin-bottom: 1.5rem;">Perfect for the hands-on host. We handle the digital stress, you handle the physical property.</p>
+                            <ul class="pillar-features">
+                                <li><strong>Listing Optimization:</strong> High-ranking SEO setups</li>
+                                <li><strong>Media Marketing:</strong> Professional staging & photography</li>
+                                <li><strong>Dynamic Pricing:</strong> Daily algorithmic rate adjustments</li>
+                                <li><strong>Guest Relations:</strong> 24/7 vetting and communication</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="tier-card premium">
+                            <h3>Full Control Management</h3>
+                            <p class="lead" style="font-size: 1.1rem; color: rgba(255,255,255,0.8); margin-bottom: 1.5rem;">Total asset stewardship. You collect the passive revenue, we handle absolutely everything else.</p>
+                            <ul class="pillar-features">
+                                <li><strong>Includes ALL Partial Management Features</strong></li>
+                                <li><strong>Ngaoyi Cleaning Turnovers:</strong> Hotel-grade sanitization</li>
+                                <li><strong>Landscape & Gardening:</strong> Curb appeal preservation</li>
+                                <li><strong>Service Allocation:</strong> Bespoke on-the-ground support tailored to VIP guest needs</li>
+                                <li><strong>Preventative Maintenance:</strong> Monthly property audits</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="pillars-section animate delay-4">
                     <h2>Our Operational Pillars</h2>
-                    <p class="subtitle">The three foundations that set FixRest apart from conventional property management</p>
+                    <p class="subtitle">The foundations that set FixRest apart from conventional property management</p>
                     
                     <div class="pillars-grid">
                         <div class="pillar-card">
                             <div class="pillar-icon">🔧</div>
                             <h3>The Vetted Maintenance Network</h3>
-                            <p>Technical failures are the primary cause of negative reviews and owner stress. FixRest eliminates this risk.</p>
-                            <p><em>We do not rely on Google searches to find help in an emergency.</em> We maintain a private, internal database of vetted plumbers, electricians, handymen, and appliance specialists across Durban and Johannesburg.</p>
+                            <p>Technical failures are the primary cause of negative reviews. FixRest eliminates this risk with our private database of vetted plumbers, electricians, and handymen.</p>
                             <ul class="pillar-features">
-                                <li><strong>Speed:</strong> Priority response times for FixRest properties, 24/7</li>
-                                <li><strong>Trust:</strong> All contractors pre-screened for quality</li>
-                                <li><strong>Value:</strong> Pre-negotiated fair rates</li>
+                                <li><strong>Speed:</strong> Priority 24/7 response times</li>
+                                <li><strong>Trust:</strong> All contractors pre-screened</li>
+                                <li><strong>Gardening:</strong> Included exterior maintenance checks</li>
                             </ul>
                         </div>
 
                         <div class="pillar-card">
                             <div class="pillar-icon">✨</div>
                             <h3>Exclusive Partnership:<br>Ngaoyi Cleaning Solutions</h3>
-                            <p>In the world of Airbnb, cleanliness is currency. A single stray hair can cost you a Superhost badge.</p>
-                            <p>FixRest has secured an exclusive operational partnership with <strong>Ngaoyi Cleaning Solutions</strong> to ensure hospitality-grade perfection.</p>
+                            <p>In the world of Airbnb, cleanliness is currency. FixRest has secured an exclusive partnership with <strong>Ngaoyi Cleaning Solutions</strong> to ensure hospitality-grade perfection.</p>
                             <ul class="pillar-features">
-                                <li><strong>Consistency:</strong> Dedicated, trained team with specific protocols</li>
-                                <li><strong>Staging:</strong> Hotel-standard linen staging & amenity restocking</li>
+                                <li><strong>Consistency:</strong> Dedicated, trained 45-point teams</li>
+                                <li><strong>Staging:</strong> Hotel-standard linen & restocking</li>
                                 <li><strong>Accountability:</strong> Photographic reports after every clean</li>
                             </ul>
                         </div>
 
                         <div class="pillar-card">
                             <div class="pillar-icon">📈</div>
-                            <h3>Dynamic Revenue Management</h3>
-                            <p>Setting a "flat rate" for your property leaves money on the table. FixRest treats your property like a mini-hotel.</p>
-                            <p>We utilize advanced dynamic pricing software that analyzes local market supply and demand in real-time.</p>
+                            <h3>Marketing & Revenue Focus</h3>
+                            <p>Setting a "flat rate" leaves money on the table. We treat your property like a mini-hotel, utilizing media marketing and advanced dynamic pricing to maximize your returns.</p>
                             <ul class="pillar-features">
-                                <li><strong>Strategic Pricing:</strong> Adjust rates daily based on demand</li>
-                                <li><strong>Peak Season Capture:</strong> Maximize Durban July & conference rates</li>
-                                <li><strong>Occupancy Optimization:</strong> Smart pricing for slow periods</li>
+                                <li><strong>Media Marketing:</strong> Scroll-stopping aesthetics</li>
+                                <li><strong>Peak Season Capture:</strong> Maximize Durban July & conventions</li>
+                                <li><strong>Listing Optimization:</strong> Algorithm-friendly updates</li>
                             </ul>
                         </div>
                     </div>
@@ -1248,35 +550,29 @@
                         <div class="markets-grid">
                             <div class="market-card">
                                 <h3>The Durban & North Coast Market</h3>
-                                <p>Capitalizing on high-season holiday traffic and year-round "bleisure" (business + leisure) travelers.</p>
-                                
+                                <p>Capitalizing on high-season holiday traffic and year-round "bleisure" travelers.</p>
                                 <div class="market-areas">
                                     <span class="market-tag">Umhlanga Rocks</span>
                                     <span class="market-tag">Durban North</span>
                                     <span class="market-tag">Ballito</span>
-                                    <span class="market-tag">Morningside</span>
                                 </div>
-                                
                                 <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-dark);">
                                     <h4>Our Coastal Edge</h4>
-                                    <p>We understand coastal property care, proactively managing humidity, salt air wear-and-tear, and seasonal surges to protect your investment.</p>
+                                    <p>We understand coastal property care, proactively managing humidity, salt air wear-and-tear, and seasonal surges.</p>
                                 </div>
                             </div>
 
                             <div class="market-card">
                                 <h3>The Johannesburg & Sandton Market</h3>
                                 <p>Targeting the high-net-worth corporate sector, long-stay executives, and medical tourism.</p>
-                                
                                 <div class="market-areas">
                                     <span class="market-tag">Sandton CBD</span>
                                     <span class="market-tag">Rosebank</span>
                                     <span class="market-tag">Melrose Arch</span>
-                                    <span class="market-tag">Bryanston</span>
                                 </div>
-                                
                                 <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-dark);">
                                     <h4>Our Business Standard</h4>
-                                    <p>We cater to corporate needs, ensuring high-speed fiber uptime, workspace ergonomics, and seamless 24/7 self-check-in for international arrivals.</p>
+                                    <p>We cater to corporate needs, ensuring high-speed fiber uptime, workspace ergonomics, and seamless 24/7 check-ins.</p>
                                 </div>
                             </div>
                         </div>
@@ -1295,37 +591,6 @@
                         <div class="feature-item animate delay-3">
                             <h4>Financial Clarity</h4>
                             <p>Monthly statements detailing gross income, cleaning fees, and maintenance costs down to the cent.</p>
-                        </div>
-                        <div class="feature-item animate delay-2">
-                            <h4>Legal & Guest Vetting</h4>
-                            <p>We handle strict guest screening and enforce "No Party" policies with deposit protection.</p>
-                        </div>
-                        <div class="feature-item animate delay-3">
-                            <h4>Maintenance Logs</h4>
-                            <p>Complete history of all maintenance, repairs, and upgrades with before/after documentation.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="advantage-section">
-                    <h2 class="animate">Modern Solutions for Modern Hosts</h2>
-                    <p class="animate delay-1">Being established in 2024 means FixRest was born in the era of modern travel. We aren't bogged down by outdated real estate practices.</p>
-                    
-                    <div class="tech-grid">
-                        <div class="tech-item animate delay-2">
-                            <div class="tech-icon">🏠</div>
-                            <h4>Smart Home Tech</h4>
-                            <p>Integration with smart locks, noise monitoring, and environmental sensors for complete property oversight.</p>
-                        </div>
-                        <div class="tech-item animate delay-3">
-                            <div class="tech-icon">🔄</div>
-                            <h4>Multi-Platform Syncing</h4>
-                            <p>Your property listed simultaneously on Airbnb, Booking.com, and VRBO with centralized calendar management.</p>
-                        </div>
-                        <div class="tech-item animate delay-4">
-                            <div class="tech-icon">🤖</div>
-                            <h4>AI-Assisted Communication</h4>
-                            <p>24/7 instant guest response system that maintains 100% response rates for superior search ranking.</p>
                         </div>
                     </div>
                 </div>
@@ -1353,75 +618,25 @@
                 <div class="founding-story animate delay-1">
                     <h2>The Core Story</h2>
                     <p class="lead">FixRest was founded in 2024 to solve the single biggest problem in the South African Airbnb market: <span class="highlight">Operational Inconsistency.</span></p>
-                    <p>The founders of FixRest transitioned from the property maintenance sector into full-scale co-hosting because they saw beautiful homes being neglected by "app-only" managers who focused solely on booking calendars while ignoring the physical asset itself.</p>
-                    <p>We recognized that true property stewardship requires both hospitality expertise and technical property knowledge—a combination rarely found in the traditional property management space.</p>
-                </div>
-
-                <div class="mission-statement animate delay-2">
-                    <h2>Our Mission</h2>
-                    <p class="lead">To provide property owners with 100% passive income through comprehensive asset stewardship.</p>
-                    <p>We believe that to be a great host, you must first be a great caretaker. We don't just manage listings; we manage homes. By the time a guest steps through the door, our team has already performed a technical audit of the space to ensure perfection.</p>
-                    <p style="font-size: 1.25rem; font-weight: 600; margin-top: 2rem; color: var(--accent-light);">We treat your property as if it were our own investment.</p>
+                    <p>The founders of FixRest transitioned from the property maintenance sector into full-scale co-hosting because they saw beautiful homes being neglected by "app-only" managers who focused solely on booking calendars while ignoring the physical asset.</p>
                 </div>
 
                 <div class="values-grid">
                     <div class="value-card animate delay-1">
                         <div class="value-number">01</div>
                         <h3>Established Foundation</h3>
-                        <p>Since 2024, we have built a reputation for transparency. Owners have 24/7 access to their listing data and maintenance logs through our proprietary dashboard.</p>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">No hidden fees, no unexpected charges.</p>
+                        <p>Since 2024, we have built a reputation for transparency. Owners have 24/7 access to their listing data and maintenance logs.</p>
                     </div>
-
                     <div class="value-card animate delay-2">
                         <div class="value-number">02</div>
                         <h3>Local Expertise</h3>
-                        <p>We are on the ground in KZN and Gauteng. We know the suburbs, the security requirements, and the guest expectations unique to each city's market dynamics.</p>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">Durban & Johannesburg market specialists.</p>
+                        <p>We are on the ground in KZN and Gauteng. We know the suburbs, the security requirements, and the guest expectations unique to each city.</p>
                     </div>
-
                     <div class="value-card animate delay-3">
                         <div class="value-number">03</div>
                         <h3>The Launch Protocol</h3>
-                        <p>We don't just "list" a property. We follow a strict onboarding journey that includes professional staging, high-end photography, and technical optimization.</p>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 1rem;">Turnkey property activation.</p>
+                        <p>We don't just "list" a property. We follow a strict onboarding journey that includes professional staging, photography, and technical optimization.</p>
                     </div>
-                </div>
-
-                <div class="onboarding-journey animate delay-4">
-                    <h2>The FixRest Onboarding Journey</h2>
-                    <p class="subtitle">Our systematic approach to transforming your property into a high-performing asset</p>
-                    
-                    <div class="journey-steps">
-                        <div class="step-card">
-                            <div class="step-number">1</div>
-                            <h4>Technical Audit</h4>
-                            <p>Comprehensive property assessment to identify maintenance needs and optimization opportunities.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">2</div>
-                            <h4>Professional Staging</h4>
-                            <p>High-end photography and virtual staging to maximize booking appeal and perceived value.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">3</div>
-                            <h4>Market Positioning</h4>
-                            <p>Strategic pricing and listing optimization across multiple platforms for maximum exposure.</p>
-                        </div>
-                        <div class="step-card">
-                            <div class="step-number">4</div>
-                            <h4>Operational Setup</h4>
-                            <p>Implementation of smart home technology, cleaning protocols, and maintenance networks.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="text-align: center; margin: 6rem 0 4rem; padding: 4rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius); color: white;">
-                    <h2 style="color: white;">Built on Technical Integrity</h2>
-                    <p style="color: var(--text-white); opacity: 0.9; max-width: 600px; margin: 1.5rem auto 2.5rem;">Join property owners who trust FixRest to protect their investment while maximizing returns.</p>
-                    <button class="btn-cta nav-revenue" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
-                        Start Your Partnership
-                        <span style="font-size: 1.5rem;">→</span>
-                    </button>
                 </div>
             </div>
         </section>
@@ -1436,139 +651,45 @@
 
                 <div class="ngaoyi-section animate delay-1">
                     <h2>The Exclusive Partnership: Ngaoyi Cleaning Solutions</h2>
-                    <p class="lead" style="color: var(--text-white);">Cleanliness is the #1 factor in Airbnb search rankings. To ensure a "hospital-grade" standard, FixRest utilizes Ngaoyi Cleaning as our exclusive turnover partner.</p>
-                    <p>Every turnover follows a 45-point hospitality checklist designed by hospitality experts to guarantee guest satisfaction and protect your property's reputation.</p>
+                    <p class="lead" style="color: var(--text-white);">Cleanliness is the #1 factor in search rankings. To ensure a "hospital-grade" standard, FixRest utilizes Ngaoyi Cleaning as our exclusive turnover partner.</p>
                     
                     <div class="checklist-grid">
                         <div class="checklist-item">
                             <h4>Sanitation Protocol</h4>
-                            <p>Professional deep cleaning of all high-touch surfaces with medical-grade products and UV-C sterilization where applicable.</p>
+                            <p>Professional deep cleaning of all high-touch surfaces with medical-grade products.</p>
                         </div>
                         <div class="checklist-item">
                             <h4>Hotel Staging</h4>
-                            <p>Five-star linen and towel presentation meeting international hotel standards, with ironed bed linens and precise pillow placement.</p>
+                            <p>Five-star linen and towel presentation meeting international hotel standards.</p>
                         </div>
                         <div class="checklist-item">
                             <h4>Quality Control</h4>
-                            <p>Photographic evidence of every clean is uploaded to our management portal before the next guest arrives, ensuring accountability.</p>
-                        </div>
-                        <div class="checklist-item">
-                            <h4>Inventory Management</h4>
-                            <p>Real-time tracking of consumables, linens, and amenities to prevent shortages and maintain consistent quality.</p>
-                        </div>
-                        <div class="checklist-item">
-                            <h4>Timeline Adherence</h4>
-                            <p>Guaranteed turnover completion within 4-hour windows, even for back-to-back bookings and same-day check-ins.</p>
-                        </div>
-                        <div class="checklist-item">
-                            <h4>Specialized Cleaning</h4>
-                            <p>Tailored approaches for different surfaces—marble, hardwood, carpets—using appropriate professional-grade equipment.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="maintenance-section animate delay-2">
-                    <h2>The Maintenance Edge: Our Vetted Contractor Database</h2>
-                    <p class="subtitle">FixRest solves technical issues before they become bad reviews. We maintain a private, internal database of vetted local professionals.</p>
-                    
-                    <div class="maintenance-features">
-                        <div class="feature-card">
-                            <h3>Priority Response</h3>
-                            <p>Because we are a volume partner, our contractors provide 24/7 priority response for FixRest properties. Average emergency response time: under 2 hours.</p>
-                            <ul style="margin-top: 1rem; list-style: none;">
-                                <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                                    <strong>24/7 Emergency Line:</strong> Dedicated hotline for urgent issues
-                                </li>
-                                <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                                    <strong>Verified Technicians:</strong> All contractors licensed and insured
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="feature-card">
-                            <h3>Cost Control</h3>
-                            <p>We use pre-negotiated rates to ensure owners get the best value on necessary repairs. No markups, just transparent pricing.</p>
-                            <ul style="margin-top: 1rem; list-style: none;">
-                                <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                                    <strong>Trade Pricing:</strong> Access to wholesale rates on parts and labor
-                                </li>
-                                <li style="margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative;">
-                                    <span style="position: absolute; left: 0; color: var(--accent);">✓</span>
-                                    <strong>Approval Process:</strong> All quotes approved by owners before work begins
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="preventative-care">
-                        <h3>Preventative Care: Monthly "Healthy Home" Audits</h3>
-                        <p>We perform monthly property audits to catch minor leaks, electrical wear, or structural issues before they turn into expensive emergencies. Our audit checklist includes:</p>
-                        
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem;">
-                            <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 8px;">
-                                <strong>Plumbing Systems</strong>
-                                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Check for leaks, water pressure, and drainage issues</p>
-                            </div>
-                            <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 8px;">
-                                <strong>Electrical Safety</strong>
-                                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Inspect wiring, outlets, and circuit breakers</p>
-                            </div>
-                            <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 8px;">
-                                <strong>HVAC Systems</strong>
-                                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Maintain air conditioning and heating efficiency</p>
-                            </div>
-                            <div style="padding: 1rem; background: rgba(249, 115, 22, 0.1); border-radius: 8px;">
-                                <strong>Structural Integrity</strong>
-                                <p style="font-size: 0.9rem; margin-top: 0.5rem;">Monitor for cracks, damp, and pest issues</p>
-                            </div>
+                            <p>Photographic evidence of every clean is uploaded to our management portal.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="tech-stack-section animate delay-3">
-                    <h2>The Technology Stack</h2>
-                    <p class="subtitle">Proprietary systems that maximize your revenue while minimizing your involvement</p>
+                    <h2>The Technology & Guest Stack</h2>
+                    <p class="subtitle">Proprietary systems that maximize your revenue and guest satisfaction</p>
                     
                     <div class="tech-stack-grid">
                         <div class="tech-card">
-                            <div class="tech-icon">📈</div>
-                            <h3>Dynamic Pricing</h3>
-                            <p>Our software adjusts your nightly rates hourly based on local demand in Durban and Johannesburg, capturing maximum revenue during peak periods.</p>
-                            <div style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light);">
-                                <strong>Factors monitored:</strong> Local events, weather, competitor occupancy, seasonality
-                            </div>
+                            <div class="tech-icon">🗣️</div>
+                            <h3>Guest Relations & Allocation</h3>
+                            <p>We go beyond automated messages. Our 24/7 guest relations team manages everything from late-night check-ins to bespoke service allocations based on specific guest needs.</p>
                         </div>
-
+                        <div class="tech-card">
+                            <div class="tech-icon">📈</div>
+                            <h3>Listing Optimization</h3>
+                            <p>We combine high-end Media Marketing with deep algorithm SEO. This means your property doesn't just look stunning—it actively ranks higher in Airbnb search results.</p>
+                        </div>
                         <div class="tech-card">
                             <div class="tech-icon">🛡️</div>
                             <h3>Guest Vetting</h3>
                             <p>Advanced screening protocols using AI-powered background checks to ensure only respectful, high-quality guests enter your space.</p>
-                            <div style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light);">
-                                <strong>Screening criteria:</strong> Verified IDs, previous reviews, social media validation
-                            </div>
-                        </div>
-
-                        <div class="tech-card">
-                            <div class="tech-icon">🔐</div>
-                            <h3>Smart Access</h3>
-                            <p>Keyless, encrypted entry systems with unique codes per guest. No lost keys, no unauthorized access, and remote access control.</p>
-                            <div style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-light);">
-                                <strong>Features include:</strong> Time-limited codes, entry logs, emergency override
-                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div style="text-align: center; margin: 6rem 0 4rem; padding: 4rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius); color: white;">
-                    <h2 style="color: white;">Ready for Operational Excellence?</h2>
-                    <p style="color: var(--text-white); opacity: 0.9; max-width: 600px; margin: 1.5rem auto 2.5rem;">Experience the FixRest difference—where every detail is managed with precision and professionalism.</p>
-                    <button class="btn-cta nav-revenue" style="background: var(--accent); color: white; font-size: 1.2rem; padding: 1.5rem 3rem;">
-                        Optimize Your Operations
-                        <span style="font-size: 1.5rem;">→</span>
-                    </button>
                 </div>
             </div>
         </section>
@@ -1602,17 +723,9 @@
                             </div>
                         </div>
 
-                        <div class="contact-method">
-                            <div class="method-icon">📍</div>
-                            <div>
-                                <strong>Service Areas</strong>
-                                <p style="color: rgba(255,255,255,0.8); margin-bottom: 0; font-size: 0.95rem;">Umhlanga Rocks, Durban North, Sandton CBD, Rosebank</p>
-                            </div>
-                        </div>
-
                         <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
                             <strong>Looking for a detailed projection?</strong>
-                            <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">Use our specific forecasting tool to get data-driven insights for your property.</p>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; margin-top: 0.5rem;">Use our forecasting tool to get data-driven insights.</p>
                             <button class="btn-cta nav-revenue" style="background: white; color: var(--primary); width: 100%; justify-content: center; margin-top: 1rem;">
                                 Go to Revenue Forecast
                             </button>
@@ -1634,10 +747,9 @@
                             <div>
                                 <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Subject</label>
                                 <select name="subject" style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit; background: white;">
+                                    <option value="Partial Management Inquiry">Partial Management Inquiry</option>
+                                    <option value="Full Control Management Inquiry">Full Control Management Inquiry</option>
                                     <option value="General Question">General Question</option>
-                                    <option value="Partnership Inquiry">Partnership Inquiry</option>
-                                    <option value="Maintenance Vendor Application">Maintenance Vendor Application</option>
-                                    <option value="Other">Other</option>
                                 </select>
                             </div>
                             <div>
@@ -1687,10 +799,7 @@
                                 <option value="">Select Area</option>
                                 <option value="umhlanga">Umhlanga Rocks</option>
                                 <option value="ballito">Ballito</option>
-                                <option value="durban-north">Durban North</option>
                                 <option value="sandton">Sandton CBD</option>
-                                <option value="rosebank">Rosebank</option>
-                                <option value="melrose">Melrose Arch</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
@@ -1698,14 +807,13 @@
                     
                     <div>
                         <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);">Property Details</label>
-                        <textarea name="details" rows="4" placeholder="Bedrooms, amenities, unique features, etc." style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;"></textarea>
+                        <textarea name="details" rows="4" placeholder="Bedrooms, current management setup, etc." style="width: 100%; padding: 1rem; border: 2px solid var(--border); border-radius: 8px; font-family: inherit;"></textarea>
                     </div>
                     
                     <button type="submit" style="background: var(--accent); color: white; border: none; padding: 1.25rem; border-radius: 8px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: var(--transition);">
                         Get My Revenue Forecast
                     </button>
                 </form>
-                
                 <div id="revenueFormResponse" style="margin-top: 1.5rem; text-align: center; font-weight: 600;"></div>
             </div>
         </div>
@@ -1715,39 +823,14 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <img src="https://github.com/fixrestsolutions-netizen/fixrestsolutions/blob/3b60d8f191e9f8aca12fb19e66872519bcf448fc/assets/logo-removebg-preview.png?raw=true" 
-                     style="height: 60px; margin-bottom: 1.5rem;" 
-                     alt="FixRest Logo">
+                     style="height: 60px; margin-bottom: 1.5rem;" alt="FixRest Logo">
                 <p style="font-size: 0.9rem; color: var(--text-light); line-height: 1.6;">
-                    Gold standard property stewardship for Durban & Johannesburg. 
-                    Bridging luxury hospitality with technical asset preservation. 
-                    Established 2024.
+                    Gold standard property stewardship for Durban & Johannesburg. Established 2024.
                 </p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#" class="nav-home">Home</a></li>
-                    <li><a href="#" class="nav-about">About</a></li>
-                    <li><a href="#" class="nav-ops">Operations</a></li>
-                    <li><a href="#" class="nav-contact">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Our Markets</h4>
-                <ul>
-                    <li><a href="#">Umhlanga Rocks</a></li>
-                    <li><a href="#">Ballito & North Coast</a></li>
-                    <li><a href="#">Durban North</a></li>
-                    <li><a href="#">Sandton CBD</a></li>
-                    <li><a href="#">Rosebank</a></li>
-                    <li><a href="#">Melrose Arch</a></li>
-                </ul>
             </div>
             <div class="footer-col">
                 <h4>Connect</h4>
                 <ul>
-                    <li><a href="https://instagram.com/fixrest" target="_blank">FixRest Instagram</a></li>
-                    <li><a href="https://instagram.com/ngaoyicleaning" target="_blank">Ngaoyi Cleaning</a></li>
                     <li><a href="mailto:fixrestsolutions@gmail.com">fixrestsolutions@gmail.com</a></li>
                     <li><a href="tel:+27000000000">(+27) 000 000 0000</a></li>
                 </ul>
@@ -1755,59 +838,36 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2024-2026 FixRest Solutions. All Rights Reserved.</p>
-            <p>Premium Property Stewardship | Data-Driven Hospitality</p>
         </div>
     </footer>
 
     <script>
-        // --- CONFIGURATION ---
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxOMlByKsZFNXeeL1UrI43C5xdYcFGMZFl51jhNVlfwjRy6bC-0NDnRtpqY6-_BTpqK/exec'; // <--- PASTE YOUR URL HERE
+        // --- GOOGLE APPS SCRIPT URL ---
+        // AFTER you deploy the Google Script below, paste the Web App URL here:
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnV3NcTaUl13bzmwWYnhomLaJVQia22vjbBqxWopqrjJtAiCDzCdeAvTH4B3AkBtIe/exec';
 
-        // Initialize animations
+        // Initialize animations & Navigation (Same as original)
         document.addEventListener('DOMContentLoaded', () => {
-            // Add scroll effect to nav
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    document.querySelector('nav').classList.add('scrolled');
-                } else {
-                    document.querySelector('nav').classList.remove('scrolled');
-                }
+                if (window.scrollY > 50) document.querySelector('nav').classList.add('scrolled');
+                else document.querySelector('nav').classList.remove('scrolled');
             });
-
-            // Trigger animations for elements in view
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate');
-                        // Remove delay classes after animation
-                        setTimeout(() => {
-                            entry.target.classList.remove('delay-1', 'delay-2', 'delay-3', 'delay-4');
-                        }, 800);
+                        setTimeout(() => { entry.target.classList.remove('delay-1', 'delay-2', 'delay-3', 'delay-4'); }, 800);
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-            // Observe all animate-able elements
             document.querySelectorAll('.animate').forEach(el => observer.observe(el));
         });
 
-        // Modal Functions
-        function openRevenueModal() {
-            document.getElementById('revenueModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+        function openRevenueModal() { document.getElementById('revenueModal').style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+        function closeRevenueModal() { document.getElementById('revenueModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        function closeRevenueModal() {
-            document.getElementById('revenueModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        // Generic Form Submission Handler
         function handleFormSubmit(formId, responseId, successMessage) {
             const form = document.getElementById(formId);
             if (!form) return;
@@ -1818,9 +878,7 @@
                 const responseDiv = document.getElementById(responseId);
                 const originalBtnText = submitBtn.innerText;
                 
-                submitBtn.innerText = 'Sending...';
-                submitBtn.disabled = true;
-                responseDiv.innerHTML = '';
+                submitBtn.innerText = 'Sending...'; submitBtn.disabled = true; responseDiv.innerHTML = '';
                 
                 fetch(SCRIPT_URL, { method: 'POST', body: new FormData(form) })
                 .then(response => {
@@ -1830,138 +888,78 @@
                     
                     setTimeout(() => {
                         if (formId === 'revenueForm') closeRevenueModal();
-                        submitBtn.innerText = originalBtnText;
-                        submitBtn.disabled = false;
-                        responseDiv.innerHTML = '';
+                        submitBtn.innerText = originalBtnText; submitBtn.disabled = false; responseDiv.innerHTML = '';
                     }, 3000);
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
-                    responseDiv.innerHTML = 'Error! Please email us directly.';
+                    responseDiv.innerHTML = 'Error! Please check your Script URL or email us directly.';
                     responseDiv.style.color = '#EF4444';
-                    submitBtn.disabled = false;
-                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false; submitBtn.innerText = originalBtnText;
                 });
             });
         }
 
-        // Initialize Forms
         handleFormSubmit('revenueForm', 'revenueFormResponse', 'Success! Your forecast request has been sent.');
         handleFormSubmit('generalForm', 'generalFormResponse', 'Message sent successfully! We will be in touch.');
 
-        // Page Navigation System
         class PageManager {
             constructor() {
                 this.pages = {
-                    home: document.getElementById('home-page'),
-                    about: document.getElementById('about-page'),
-                    ops: document.getElementById('ops-page'),
-                    contact: document.getElementById('contact-page')
+                    home: document.getElementById('home-page'), about: document.getElementById('about-page'),
+                    ops: document.getElementById('ops-page'), contact: document.getElementById('contact-page')
                 };
-                
                 this.currentPage = 'home';
                 this.init();
             }
-            
             init() {
-                // Navigation event listeners
-                const navConfig = {
-                    home: '.nav-home',
-                    about: '.nav-about',
-                    ops: '.nav-ops',
-                    contact: '.nav-contact',
-                    revenue: '.nav-revenue'
-                };
-                
+                const navConfig = { home: '.nav-home', about: '.nav-about', ops: '.nav-ops', contact: '.nav-contact', revenue: '.nav-revenue' };
                 for (const [page, selector] of Object.entries(navConfig)) {
                     document.querySelectorAll(selector).forEach(link => {
                         link.addEventListener('click', (e) => {
                             e.preventDefault();
-                            if (page === 'revenue') {
-                                openRevenueModal();
-                            } else {
-                                this.showPage(page);
-                                this.updateNavActive(page);
-                                this.animatePageContent();
-                            }
+                            if (page === 'revenue') openRevenueModal();
+                            else { this.showPage(page); this.updateNavActive(page); this.animatePageContent(); }
                         });
                     });
                 }
-                
-                // Initialize home page as active
-                this.updateNavActive('home');
-                this.animatePageContent();
-                
-                // Initialize Slider
-                this.initSlider();
+                this.updateNavActive('home'); this.animatePageContent(); this.initSlider();
             }
-            
             showPage(pageName) {
-                // Hide all pages
-                Object.values(this.pages).forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // Show selected page
-                if(this.pages[pageName]) {
-                    this.pages[pageName].classList.add('active');
-                    this.currentPage = pageName;
-                }
-                
-                // Scroll to top
+                Object.values(this.pages).forEach(page => page.classList.remove('active'));
+                if(this.pages[pageName]) { this.pages[pageName].classList.add('active'); this.currentPage = pageName; }
                 document.getElementById('page-container').scrollTop = 0;
             }
-            
             updateNavActive(pageName) {
-                // Update navigation active state
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Add active class to current page link
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
                 document.querySelectorAll(`.nav-${pageName}`).forEach(link => {
-                    if (!link.classList.contains('btn-nav-arrow')) {
-                        link.classList.add('active');
-                    }
+                    if (!link.classList.contains('btn-nav-arrow')) link.classList.add('active');
                 });
             }
-            
             animatePageContent() {
-                // Add animation classes to new page content
                 setTimeout(() => {
                     const currentPage = document.querySelector('.page.active');
                     if (!currentPage) return;
-                    
-                    const animateElements = currentPage.querySelectorAll('.animate');
-                    
-                    animateElements.forEach((el, index) => {
-                        el.style.opacity = '0';
-                        el.style.transform = 'translateY(30px)';
-                        
+                    currentPage.querySelectorAll('.animate').forEach((el, index) => {
+                        el.style.opacity = '0'; el.style.transform = 'translateY(30px)';
                         setTimeout(() => {
                             el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                            el.style.opacity = '1';
-                            el.style.transform = 'translateY(0)';
+                            el.style.opacity = '1'; el.style.transform = 'translateY(0)';
                         }, index * 100);
                     });
                 }, 300);
             }
-
             initSlider() {
                 const slides = document.querySelectorAll('.slide');
                 if (slides.length === 0) return;
-                
                 let currentSlide = 0;
-                
                 setInterval(() => {
                     slides[currentSlide].classList.remove('active');
                     currentSlide = (currentSlide + 1) % slides.length;
                     slides[currentSlide].classList.add('active');
-                }, 5000); // Change slide every 5 seconds
+                }, 5000);
             }
         }
-
-        // Initialize Page Manager
         const pageManager = new PageManager();
     </script>
 </body>
