@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIXREST | Strategic Infrastructure & Asset Liquidity</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>FIXREST | Institutional Asset & Infrastructure Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #000000;
-            --secondary: #ffffff;
-            --accent: #1a1a1a;
-            --border: #e5e5e5;
-            --text-muted: #666666;
+            --black: #050505;
+            --white: #ffffff;
+            --gray-light: #f4f4f4;
+            --gray-dark: #555555;
+            --border: #e0e0e0;
         }
 
         * {
@@ -20,247 +23,409 @@
             box-sizing: border-box;
         }
 
-        html { scroll-behavior: smooth; }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--secondary);
-            color: var(--primary);
-            line-height: 1.7;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, .logo {
-            font-family: 'Cormorant Garamond', serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        h1, h2, h3, h4, .serif {
+            font-family: 'Playfair Display', serif;
+            color: var(--black);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 5%;
         }
 
-        /* Navigation */
+        /* ----- NAVIGATION ----- */
         nav {
             position: fixed;
-            width: 100%;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
             border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 25px 0;
+            z-index: 9999;
+            padding: 20px 0;
         }
 
-        .nav-flex {
+        .nav-wrapper {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 700; }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary);
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 40px;
-            letter-spacing: 1.5px;
-            transition: opacity 0.3s;
+        .brand-logo img {
+            height: 70px; /* BIGGER LOGO */
+            width: auto;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
         }
 
-        .nav-links a:hover { opacity: 0.5; }
+        .brand-logo img:hover {
+            opacity: 0.7;
+        }
 
-        /* Hero Section */
-        section.hero {
-            padding: 200px 0 100px;
-            min-height: 80vh;
+        .nav-menu {
             display: flex;
-            align-items: center;
+            gap: 40px;
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 30px;
+        .nav-item {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            text-decoration: none;
+            cursor: pointer;
+            padding-bottom: 8px;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .hero-grid {
+        .nav-item:hover, .nav-item.active {
+            color: var(--black);
+            border-bottom: 1px solid var(--black);
+        }
+
+        /* ----- MAIN CONTENT AREA ----- */
+        main {
+            margin-top: 110px;
+            min-height: 85vh;
+        }
+
+        .section-wrapper {
+            display: none;
+            padding: 100px 0 120px;
+            animation: elegantFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+
+        .section-wrapper.active {
+            display: block;
+        }
+
+        @keyframes elegantFade {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ----- TYPOGRAPHY & GRIDS ----- */
+        .kicker {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 600;
+            color: var(--gray-dark);
+            display: block;
+            margin-bottom: 20px;
+            border-left: 2px solid var(--black);
+            padding-left: 15px;
+        }
+
+        .headline {
+            font-size: 4.5rem;
+            line-height: 1.05;
+            font-weight: 600;
+            margin-bottom: 40px;
+            max-width: 1000px;
+            letter-spacing: -1px;
+        }
+
+        .sub-headline {
+            font-size: 1.2rem;
+            color: var(--gray-dark);
+            max-width: 700px;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .grid-half {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            gap: 80px;
+            align-items: start;
         }
 
-        .hero-image {
+        .grid-third {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+        }
+
+        /* ----- CONTENT BLOCKS ----- */
+        .text-block h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .text-block p {
+            color: var(--gray-dark);
+            font-size: 0.95rem;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* ----- IMAGES ----- */
+        .image-frame {
             width: 100%;
             height: 500px;
+            background: var(--gray-light);
+            margin-bottom: 60px;
+            overflow: hidden;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             filter: grayscale(100%);
         }
 
-        /* Sections General */
-        section { padding: 120px 0; border-bottom: 1px solid var(--border); }
-
-        .section-label {
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            display: block;
+        /* ----- PROFILE SECTION ----- */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        /* About Section / Profile */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 80px;
-        }
-
-        .profile-circle {
-            width: 250px;
-            height: 250px;
-            background-color: var(--primary);
+        .profile-avatar {
+            width: 220px;
+            height: 220px;
+            background-color: var(--black);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            margin-bottom: 30px;
         }
 
-        .profile-circle img {
-            width: 60%;
-            filter: invert(1); /* Keeps the default icon white on black */
+        .profile-avatar svg {
+            width: 80px;
+            height: 80px;
+            fill: var(--white);
         }
 
-        /* Content Blocks */
-        .info-block { margin-bottom: 60px; }
-        .info-block h3 { font-size: 1.8rem; margin-bottom: 20px; border-bottom: 1px solid var(--primary); padding-bottom: 10px; }
-        .info-block p { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; text-align: justify; }
+        /* ----- FOOTER ----- */
+        footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 100px 0 50px;
+        }
 
-        /* Footer */
-        footer { padding: 80px 0; background: var(--primary); color: var(--secondary); }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 80px;
+        }
 
-        /* Responsiveness */
-        @media (max-width: 900px) {
-            .hero-grid, .grid-3, .about-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 2.5rem; }
+        .footer-logo img {
+            height: 60px; /* BIGGER FOOTER LOGO */
+            filter: invert(1);
+            margin-bottom: 30px;
+        }
+
+        .footer-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-dark);
+            margin-bottom: 25px;
+        }
+
+        .footer-text {
+            color: #aaaaaa;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-legal {
+            border-top: 1px solid #222222;
+            padding-top: 30px;
+            font-size: 0.7rem;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .headline { font-size: 3rem; }
+            .grid-half, .grid-third { grid-template-columns: 1fr; gap: 50px; }
+            .image-frame { height: 350px; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="container nav-flex">
-            <div class="logo">FIXREST</div>
-            <div class="nav-links">
-                <a href="#solutions">Solutions</a>
-                <a href="#infrastructure">Infrastructure</a>
-                <a href="#about">The CEO</a>
-                <a href="#contact">Contact</a>
+        <div class="container nav-wrapper">
+            <div class="brand-logo" onclick="switchView('home')">
+                <img src="https://raw.githubusercontent.com/fixrestsolutions-netizen/fixrestsolutions/7cdd2f2326517bc2cae8a965809894c941d5025f/assets/logo.jpg" alt="FIXREST">
+            </div>
+            <div class="nav-menu">
+                <a class="nav-item active" onclick="switchView('home')" id="tab-home">The Firm</a>
+                <a class="nav-item" onclick="switchView('liquidity')" id="tab-liquidity">Asset Liquidity</a>
+                <a class="nav-item" onclick="switchView('infrastructure')" id="tab-infrastructure">Data Infrastructure</a>
+                <a class="nav-item" onclick="switchView('leadership')" id="tab-leadership">Executive</a>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="section-label">Institutional Asset Management</span>
-                <h1>Strategic Liquidity. Global Infrastructure.</h1>
-                <p style="font-size: 1.2rem; color: var(--text-muted);">Bridging the gap between distressed real estate portfolios and the next generation of AI-driven data infrastructure. Based in Durban and Johannesburg.</p>
-            </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Corporate Architecture" class="hero-image">
-            </div>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="section-wrapper active">
+            <div class="container">
+                <span class="kicker">Corporate Overview</span>
+                <h1 class="headline">Precision Capital.<br>Global Infrastructure.</h1>
+                <p class="sub-headline">Fixrest is an institutional-grade acquisition firm. We engineer liquidity for complex real estate portfolios and secure hyper-scale data center infrastructure across emerging digital frontiers.</p>
+                
+                <div class="image-frame">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Institutional Architecture">
+                </div>
 
-    <section id="solutions">
-        <div class="container">
-            <span class="section-label">Division I: Asset Liquidity</span>
-            <div class="grid-3">
-                <div class="info-block">
-                    <h3>Fiduciary Solutions</h3>
-                    <p>For executors and legal counsel managing deceased estates, Fixrest provides a streamlined, capital-backed exit strategy. We specialize in the immediate valuation and acquisition of complex probate properties, mitigating the long-term holding costs and administrative burdens typically associated with estate liquidation.</p>
-                </div>
-                <div class="info-block">
-                    <h3>Banking & REO</h3>
-                    <p>We partner with financial institutions to manage non-performing assets. Our approach focuses on clean, rapid balance-sheet relief. By acquiring assets in their current condition, we eliminate the need for bank-led refurbishments or protracted marketing periods, ensuring a swift recovery of capital.</p>
-                </div>
-                <div class="info-block">
-                    <h3>Discreet Transactions</h3>
-                    <p>Maintaining the integrity of the asset's history is paramount. Our acquisition process is conducted off-market, ensuring privacy for the sellers and a sophisticated transition of title that respects the sensitivity of high-value portfolios.</p>
+                <div class="grid-half">
+                    <div class="text-block">
+                        <h3>Strategic Origination</h3>
+                        <p>Operating exclusively off-market, we source high-yield Single Family Rental (SFR) assets across the United States. We serve as a direct, frictionless pipeline for Private Equity firms looking to deploy capital intensely without public market exposure.</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>Southern African Operations</h3>
+                        <p>From our headquarters in Durban and Johannesburg, we identify and vet institutional-grade land for AI data centers. We leverage local economic dynamics to provide our partners with unmatched Capex efficiency in the SADC region.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="infrastructure" style="background-color: #fafafa;">
-        <div class="container">
-            <span class="section-label">Division II: Infrastructure</span>
-            <div class="about-grid">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2068&auto=format&fit=crop" alt="Data Center Technology" class="hero-image" style="height: 400px;">
-                </div>
-                <div class="info-block">
-                    <h3>AI Data Centre Site Selection</h3>
-                    <p>Southern Africa is positioned as the primary gateway for the continent’s digital expansion. Fixrest identifies and secures high-tier industrial land suitable for hyper-scale data centers. Our selection criteria focus on three non-negotiable pillars: Grid Capacity (10MW+ accessibility), Proximity to Fiber Landing Stations, and Regulatory Zoning Compliance.</p>
-                    <p>For Private Equity firms, we act as the localized "boots on the ground," vetting potential sites in Johannesburg and Durban to meet the specific cooling and power requirements of 2026-standard AI clusters. We de-risk the entry for international capital by handling pre-acquisition due diligence.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        <section id="liquidity" class="section-wrapper">
+            <div class="container">
+                <span class="kicker">Division I: Real Estate Liquidity</span>
+                <h1 class="headline">Fiduciary Solutions <br>& Portfolio Exits.</h1>
+                <p class="sub-headline">We specialize in the rapid valuation, acquisition, and transition of inherited, probate, and non-performing banking assets.</p>
 
-    <section id="about">
-        <div class="container about-grid">
-            <div class="profile-sidebar">
-                <div class="profile-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="CEO Profile">
+                <div class="grid-third">
+                    <div class="text-block">
+                        <h3>Deceased Estates</h3>
+                        <p>We partner with legal executors to liquidate inherited properties swiftly. By acquiring properties "as-is," families bypass the holding costs and emotional friction of traditional market listings, ensuring a dignified transfer of capital.</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>Banking Partnerships</h3>
+                        <p>For financial institutions holding non-performing real estate (REO), time equates to lost yield. Fixrest acquires distressed portfolios directly, providing immediate balance-sheet relief.</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>Absolute Discretion</h3>
+                        <p>Maintaining the integrity of the asset's history is paramount. Our acquisitions are off-market, ensuring strict privacy for the sellers and a sophisticated transition of title.</p>
+                    </div>
                 </div>
-                <p style="margin-top: 20px; font-weight: 600; text-align: center;">GIYANI BALOYI</p>
-                <p style="font-size: 0.8rem; text-align: center; color: var(--text-muted);">Chief Executive Officer</p>
             </div>
-            <div class="info-block">
-                <span class="section-label">Leadership</span>
-                <h2>Giyani Baloyi</h2>
-                <p>As the architect of Fixrest’s strategic evolution, Giyani Baloyi oversees the firm’s dual-mission of real estate liquidity and technological infrastructure development. With an operational footprint spanning Johannesburg and Durban, he has redirected the firm’s focus toward the high-stakes intersection of real estate and artificial intelligence.</p>
-                <p>Giyani’s philosophy is rooted in <strong>Precision Acquisition</strong>. Whether navigating the sensitivities of a deceased estate or negotiating the power-purchase agreements for a multi-million dollar data site, his focus remains on the "Mogul" standard: building a portfolio that is both socially essential and technologically relevant.</p>
-                <p>Under his direction, Fixrest serves as a vital bridge for Private Equity firms looking to capitalize on the African AI boom, providing them with vetted, shovel-ready assets in the most strategic nodes of the South African economy.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer id="contact">
+        <section id="infrastructure" class="section-wrapper">
+            <div class="container">
+                <span class="kicker">Division II: Infrastructure</span>
+                <h1 class="headline">Hyper-Scale AI <br>Site Selection.</h1>
+                <p class="sub-headline">Acting as the localized vanguard for international Private Equity, we secure the physical backbone of the 2026 artificial intelligence boom in Southern Africa.</p>
+
+                <div class="image-frame" style="height: 400px;">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2068&auto=format&fit=crop" alt="Data Center Architecture">
+                </div>
+
+                <div class="grid-half">
+                    <div class="text-block">
+                        <h3>The African Advantage</h3>
+                        <p>The global demand for GPU clusters requires vast power and space. Southern Africa provides a highly favorable ZAR/USD exchange rate, making land acquisition and localized construction exceptionally cost-effective for US and European funds.</p>
+                    </div>
+                    <div class="text-block">
+                        <h3>The Technical Guarantee</h3>
+                        <p>We do not just find land; we deliver a de-risked asset. Our selection criteria mandate a minimum 10MW grid capacity, specialized industrial zoning, and direct proximity to critical subsea fiber cables like 2Africa and Equiano.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="leadership" class="section-wrapper">
+            <div class="container">
+                <span class="kicker">Executive Office</span>
+                <h1 class="headline">Giyani Baloyi.</h1>
+                
+                <div class="grid-half">
+                    <div class="profile-container">
+                        <div class="profile-avatar">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                        <h3 class="serif" style="font-size: 2rem; margin-bottom: 5px;">Chief Executive Officer</h3>
+                        <p style="color: var(--gray-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Durban & Johannesburg</p>
+                    </div>
+                    
+                    <div class="text-block" style="padding-top: 20px;">
+                        <p>As the architect of Fixrest’s strategic evolution, Giyani Baloyi oversees the firm’s dual-mission of real estate liquidity and technological infrastructure development. Recognizing massive macro-economic shifts, he engineered the firm's pivot into a powerhouse of institutional asset acquisition.</p>
+                        <p>His philosophy is rooted in <strong>Precision Acquisition</strong>. Whether navigating the sensitive legal frameworks of a fiduciary estate in the United States or negotiating early-stage site securing for an AI data facility in South Africa, his focus remains absolute: construct a portfolio that is highly liquid and technologically critical.</p>
+                        <p>Under his direction, Fixrest provides an essential bridge for international Private Equity looking to capitalize on the African digital boom.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="logo">FIXREST</div>
-                    <p style="margin-top: 20px; font-size: 0.9rem; color: #999;">Strategic Real Estate & Infrastructure Acquisitions.<br>Durban | Johannesburg | United States</p>
+                    <div class="footer-logo">
+                        <img src="https://raw.githubusercontent.com/fixrestsolutions-netizen/fixrestsolutions/7cdd2f2326517bc2cae8a965809894c941d5025f/assets/logo.jpg" alt="FIXREST">
+                    </div>
+                    <p class="footer-text">Strategic Real Estate & Infrastructure Acquisitions.</p>
+                    <p class="footer-text">Durban | Johannesburg | United States</p>
                 </div>
                 <div>
-                    <p style="font-size: 0.8rem; font-weight: 600; margin-bottom: 20px;">CONTACT</p>
-                    <p style="font-size: 0.9rem; color: #999;">Institutional: fixrestsolutions@gmail.com</p>
-                    <p style="font-size: 0.9rem; color: #999;">Legal: fixrestsolutions@gmail.com</p>
+                    <h4 class="footer-heading">Direct Inquiries</h4>
+                    <a href="mailto:acquisitions@fixrest.co.za" class="footer-text" style="color: #fff;">acquisitions@fixrest.co.za</a>
+                    <span class="footer-text">www.fixrest.co.za</span>
                 </div>
                 <div>
-                    <p style="font-size: 0.8rem; font-weight: 600; margin-bottom: 20px;">REGULATORY</p>
-                    <p style="font-size: 0.8rem; color: #999;">Strict compliance with POPIA (SA) and US Real Estate solicitation laws.</p>
+                    <h4 class="footer-heading">Corporate Address</h4>
+                    <span class="footer-text">KwaZulu-Natal Head Office</span>
+                    <span class="footer-text">Gauteng Operations Hub</span>
                 </div>
             </div>
-            <div style="margin-top: 60px; font-size: 0.7rem; color: #555; border-top: 1px solid #333; padding-top: 20px;">
-                &copy; 2026 FIXREST HOLDINGS. ALL RIGHTS RESERVED.
+            
+            <div class="footer-legal">
+                &copy; 2026 FIXREST HOLDINGS. ALL RIGHTS RESERVED. OPERATING IN STRICT COMPLIANCE WITH POPIA (SA) AND US REGULATORY FRAMEWORKS.
             </div>
         </div>
     </footer>
 
+    <script>
+        function switchView(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.section-wrapper').forEach(s => {
+                s.classList.remove('active');
+            });
+            // Remove active state from nav links
+            document.querySelectorAll('.nav-item').forEach(l => {
+                l.classList.remove('active');
+            });
+            
+            // Show new section
+            document.getElementById(tabId).classList.add('active');
+            // Highlight new nav link
+            document.getElementById('tab-' + tabId).classList.add('active');
+            
+            // Smooth scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
