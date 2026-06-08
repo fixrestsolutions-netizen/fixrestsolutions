@@ -1,431 +1,821 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIXREST | Institutional Asset & Infrastructure Management</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --black: #050505;
-            --white: #ffffff;
-            --gray-light: #f4f4f4;
-            --gray-dark: #555555;
-            --border: #e0e0e0;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Fixrest Marketing — Digital Marketing & IT Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+:root{
+  --red:#c8321a;
+  --red-dark:#9e2512;
+  --red-light:#e8401c;
+  --black:#0e0c0b;
+  --off-white:#f7f4f0;
+  --warm-100:#ede8e1;
+  --warm-200:#d9d0c4;
+  --warm-800:#2c231a;
+  --muted:#7c6e62;
+  --rule:rgba(0,0,0,0.12);
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Outfit',system-ui,sans-serif;
+  --wa:#25d366;
+  --wa-dark:#1aaa52;
+}
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--white);
-            color: var(--black);
-            line-height: 1.8;
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-        }
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--off-white);color:var(--black);font-size:16px;line-height:1.6;overflow-x:hidden;font-weight:400}
 
-        h1, h2, h3, h4, .serif {
-            font-family: 'Playfair Display', serif;
-            color: var(--black);
-        }
+/* ─── NAV ─── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:var(--black);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.header-inner{
+  max-width:1200px;margin:0 auto;padding:0 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.logo{
+  font-family:var(--serif);font-size:1.45rem;font-weight:600;
+  color:#fff;text-decoration:none;letter-spacing:0.04em;
+}
+.logo em{color:var(--red-light);font-style:normal}
+nav{display:flex;align-items:center;gap:2.5rem}
+nav a{
+  color:rgba(255,255,255,0.55);text-decoration:none;
+  font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+  transition:color .2s;
+}
+nav a:hover{color:#fff}
+.nav-wa{
+  display:flex;align-items:center;gap:0.4rem;
+  background:var(--red);color:#fff !important;
+  padding:0.5rem 1.2rem;font-size:0.75rem !important;
+  font-weight:600 !important;letter-spacing:0.1em !important;
+  text-transform:uppercase;border:none;cursor:pointer;
+  transition:background .2s;text-decoration:none;
+}
+.nav-wa:hover{background:var(--red-dark) !important;color:#fff}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-        }
+/* ─── HERO ─── */
+.hero{
+  background:var(--black);
+  min-height:100vh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0;position:relative;overflow:hidden;
+}
+.hero-bg-line{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:
+    linear-gradient(to right, rgba(200,50,26,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200,50,26,0.04) 1px, transparent 1px);
+  background-size:80px 80px;
+  pointer-events:none;
+}
+.hero-accent{
+  position:absolute;bottom:-10%;left:-5%;
+  width:50%;height:70%;
+  background:radial-gradient(ellipse at bottom left,rgba(200,50,26,0.18) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:1200px;width:100%;margin:0 auto;
+  padding:10rem 2rem 5rem;
+}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:0.8rem;
+  margin-bottom:2rem;
+}
+.hero-eyebrow-line{width:40px;height:1px;background:var(--red)}
+.hero-eyebrow span{
+  font-size:0.72rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(255,255,255,0.4);
+}
+.hero h1{
+  font-family:var(--serif);
+  font-size:clamp(3.5rem,7vw,7rem);
+  font-weight:500;color:#fff;
+  line-height:1.0;letter-spacing:-0.01em;
+  max-width:900px;margin-bottom:2.5rem;
+}
+.hero h1 em{color:var(--red-light);font-style:italic}
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:2rem;flex-wrap:wrap;
+  border-top:1px solid rgba(255,255,255,0.1);
+  padding-top:2.5rem;margin-top:2rem;
+}
+.hero-tagline{
+  font-size:1rem;color:rgba(255,255,255,0.5);
+  max-width:480px;line-height:1.7;font-weight:300;
+}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center}
+.btn-primary{
+  background:var(--red);color:#fff;
+  padding:0.8rem 2rem;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  text-decoration:none;border:1px solid var(--red);
+  transition:background .2s,transform .15s;display:inline-block;
+}
+.btn-primary:hover{background:var(--red-dark);transform:translateY(-1px)}
+.btn-ghost{
+  border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);
+  padding:0.8rem 2rem;
+  font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;transition:border-color .2s,color .2s;display:inline-block;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.6);color:#fff}
 
-        /* ----- NAVIGATION ----- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            border-bottom: 1px solid var(--border);
-            z-index: 9999;
-            padding: 20px 0;
-        }
+/* ─── SECTION WRAPPERS ─── */
+.section{padding:6rem 2rem}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-header{
+  display:grid;grid-template-columns:1fr 2fr;gap:4rem;
+  align-items:start;margin-bottom:4rem;
+  padding-bottom:2.5rem;border-bottom:1px solid var(--rule);
+}
+.section-index{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--red);
+  display:flex;align-items:center;gap:0.7rem;padding-top:0.4rem;
+}
+.section-index::before{content:'';width:24px;height:1px;background:var(--red);flex-shrink:0}
+.section-h{
+  font-family:var(--serif);
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:500;line-height:1.1;letter-spacing:-0.01em;
+  margin-bottom:1rem;
+}
+.section-p{font-size:0.95rem;color:var(--muted);line-height:1.75;max-width:520px}
 
-        .nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* ─── SERVICES ─── */
+.services-bg{background:var(--off-white)}
+.services-table{width:100%;border-collapse:collapse}
+.services-table tr{border-bottom:1px solid var(--rule);transition:background .2s}
+.services-table tr:last-child{border-bottom:none}
+.services-table tr:hover{background:rgba(200,50,26,0.03)}
+.services-table td{padding:2rem 1.5rem 2rem 0;vertical-align:top}
+.services-table td:first-child{
+  width:60px;padding-right:2rem;
+  font-family:var(--serif);font-size:1.1rem;color:var(--muted);
+  font-style:italic;white-space:nowrap;padding-top:2.2rem;
+}
+.services-table td:nth-child(2){width:220px}
+.svc-name{
+  font-family:var(--serif);font-size:1.4rem;font-weight:500;
+  margin-bottom:0.3rem;line-height:1.2;
+}
+.svc-tag{
+  display:inline-block;font-size:0.68rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--red);padding:0.2rem 0;
+}
+.svc-desc{font-size:0.9rem;color:var(--muted);line-height:1.7;max-width:480px}
+.svc-link{
+  font-size:0.75rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--red);text-decoration:none;
+  display:inline-flex;align-items:center;gap:0.4rem;
+  margin-top:1rem;transition:gap .2s;white-space:nowrap;
+}
+.svc-link:hover{gap:0.7rem}
 
-        .brand-logo img {
-            height: 70px; /* BIGGER LOGO */
-            width: auto;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
-        }
+/* ─── PRICING ─── */
+.pricing-bg{background:var(--warm-800)}
+.pricing-bg .section-h{color:#fff}
+.pricing-bg .section-p{color:rgba(255,255,255,0.45)}
+.pricing-bg .section-index{color:#f08060}
+.pricing-bg .section-index::before{background:#f08060}
+.pricing-bg .section-header{border-bottom-color:rgba(255,255,255,0.08)}
+.plans-wrap{display:flex;flex-direction:column;gap:0}
+.plan-row{
+  display:grid;grid-template-columns:200px 1fr 220px;
+  gap:0;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  transition:background .25s;
+}
+.plan-row:first-child{border-top:1px solid rgba(255,255,255,0.07)}
+.plan-row:hover{background:rgba(255,255,255,0.03)}
+.plan-row.featured{background:var(--red);border-color:var(--red-dark)}
+.plan-row.featured:hover{background:var(--red-light)}
+.plan-meta{
+  padding:2.5rem 2rem;
+  border-right:1px solid rgba(255,255,255,0.07);
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.plan-row.featured .plan-meta{border-right-color:rgba(255,255,255,0.2)}
+.plan-tier{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.4);
+  margin-bottom:0.5rem;
+}
+.plan-row.featured .plan-tier{color:rgba(255,255,255,0.7)}
+.plan-name{
+  font-family:var(--serif);font-size:1.8rem;
+  font-weight:500;color:#fff;line-height:1;margin-bottom:0.3rem;
+}
+.plan-best{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:0.3rem}
+.plan-row.featured .plan-best{color:rgba(255,255,255,0.75)}
+.plan-price-block{
+  padding:2.5rem 2rem;
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.plan-row.featured .plan-price-block{border-right-color:rgba(255,255,255,0.2)}
+.plan-amount{
+  font-family:var(--serif);font-size:2.8rem;font-weight:500;
+  color:#fff;line-height:1;margin-bottom:0.2rem;
+}
+.plan-period{font-size:0.85rem;color:rgba(255,255,255,0.45);margin-bottom:1.5rem}
+.plan-row.featured .plan-period{color:rgba(255,255,255,0.75)}
+.plan-setup{
+  font-size:0.8rem;color:rgba(255,255,255,0.35);
+  padding-top:1rem;border-top:1px solid rgba(255,255,255,0.07);
+}
+.plan-row.featured .plan-setup{color:rgba(255,255,255,0.7);border-top-color:rgba(255,255,255,0.2)}
+.plan-features-block{padding:2.5rem 2rem}
+.plan-features-list{list-style:none;display:flex;flex-direction:column;gap:0.55rem}
+.plan-features-list li{
+  font-size:0.86rem;color:rgba(255,255,255,0.65);
+  display:flex;align-items:flex-start;gap:0.6rem;line-height:1.5;
+}
+.plan-features-list li::before{
+  content:'—';color:rgba(255,255,255,0.25);
+  flex-shrink:0;font-size:0.8rem;margin-top:1px;
+}
+.plan-row.featured .plan-features-list li{color:rgba(255,255,255,0.92)}
+.plan-row.featured .plan-features-list li::before{color:rgba(255,255,255,0.5)}
+.plan-cta-cell{
+  padding:2.5rem 2rem;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:1rem;
+  border-left:1px solid rgba(255,255,255,0.07);
+}
+.plan-row.featured .plan-cta-cell{border-left-color:rgba(255,255,255,0.2)}
+.btn-wa-plan{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--wa);color:#fff;
+  padding:0.75rem 1.4rem;
+  font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;border:none;
+  transition:background .2s,transform .15s;white-space:nowrap;
+}
+.btn-wa-plan:hover{background:var(--wa-dark);transform:translateY(-1px)}
+.plan-row.featured .btn-wa-plan{background:#fff;color:var(--wa-dark)}
+.plan-row.featured .btn-wa-plan:hover{background:var(--off-white)}
+.plan-note{font-size:0.75rem;color:rgba(255,255,255,0.3);line-height:1.5}
+.plan-row.featured .plan-note{color:rgba(255,255,255,0.65)}
+.featured-badge{
+  display:inline-block;
+  background:rgba(255,255,255,0.2);color:#fff;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  padding:0.2rem 0.6rem;margin-bottom:0.6rem;
+}
 
-        .brand-logo img:hover {
-            opacity: 0.7;
-        }
+/* ─── WHY ─── */
+.why-bg{background:var(--off-white)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.why-list{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.why-item{
+  display:grid;grid-template-columns:48px 1fr;gap:1.5rem;
+  padding:2rem 0;border-bottom:1px solid var(--rule);
+  transition:padding-left .2s;
+}
+.why-item:hover{padding-left:6px}
+.why-n{
+  font-family:var(--serif);font-size:0.95rem;
+  color:var(--red);font-style:italic;padding-top:2px;
+}
+.why-item h4{font-size:0.95rem;font-weight:600;margin-bottom:0.4rem;letter-spacing:0.01em}
+.why-item p{font-size:0.88rem;color:var(--muted);line-height:1.7}
+.why-panel{
+  background:var(--black);padding:3rem;
+  position:sticky;top:7rem;
+}
+.why-panel-title{
+  font-family:var(--serif);font-size:1.8rem;
+  color:#fff;margin-bottom:2rem;font-weight:500;
+  padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.spec-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:0.9rem 0;border-bottom:1px solid rgba(255,255,255,0.06);gap:1rem;
+}
+.spec-row:last-child{border-bottom:none}
+.spec-label{font-size:0.8rem;color:rgba(255,255,255,0.4);letter-spacing:0.04em}
+.spec-val{font-size:0.88rem;color:#fff;font-weight:500;text-align:right}
+.spec-val.red{color:#f08060}
+.why-panel-cta{
+  margin-top:2rem;padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.why-panel-cta p{font-size:0.82rem;color:rgba(255,255,255,0.35);margin-bottom:1rem;line-height:1.6}
 
-        .nav-menu {
-            display: flex;
-            gap: 40px;
-        }
+/* ─── CONTACT ─── */
+.contact-bg{background:var(--black)}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;
+  padding-top:1rem;
+}
+.contact-left .section-h{color:#fff}
+.contact-left .section-index{color:#f08060}
+.contact-left .section-index::before{background:#f08060}
+.contact-sub{
+  font-size:0.95rem;color:rgba(255,255,255,0.45);
+  line-height:1.75;margin-top:1.5rem;margin-bottom:2.5rem;font-weight:300;
+}
+.contact-detail{
+  display:flex;flex-direction:column;gap:0;
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.contact-line{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 0;border-bottom:1px solid rgba(255,255,255,0.07);
+  text-decoration:none;gap:1rem;
+  transition:padding-left .2s;
+}
+.contact-line:hover{padding-left:8px}
+.contact-line-label{
+  font-size:0.7rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.3);
+  min-width:80px;
+}
+.contact-line-val{font-size:0.9rem;color:rgba(255,255,255,0.8);font-weight:400}
+.contact-line-arrow{color:rgba(255,255,255,0.25);font-size:0.85rem;flex-shrink:0}
+.contact-right{display:flex;flex-direction:column;gap:1.5rem}
+.wa-main{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--wa);
+  padding:2.5rem;text-decoration:none;
+  transition:background .2s,transform .15s;
+  border:none;
+}
+.wa-main:hover{background:var(--wa-dark);transform:translateY(-2px)}
+.wa-main-left{}
+.wa-main-eyebrow{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.15em;
+  text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:0.5rem;
+}
+.wa-main-text{
+  font-family:var(--serif);font-size:1.6rem;font-weight:500;
+  color:#fff;line-height:1.2;
+}
+.wa-main-arrow{font-size:1.8rem;color:rgba(255,255,255,0.6)}
+.contact-info-cards{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.07)}
+.info-card{
+  background:rgba(255,255,255,0.04);
+  padding:1.5rem;
+}
+.info-card-label{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.5rem;
+}
+.info-card-val{font-size:0.88rem;color:rgba(255,255,255,0.75);font-weight:400;line-height:1.5}
 
-        .nav-item {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 500;
-            color: var(--gray-dark);
-            text-decoration: none;
-            cursor: pointer;
-            padding-bottom: 8px;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-        }
+/* ─── FOOTER ─── */
+footer{
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,0.06);
+  padding:2rem;
+}
+.footer-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{
+  font-family:var(--serif);font-size:1.1rem;color:rgba(255,255,255,0.5);
+  text-decoration:none;
+}
+.footer-logo em{color:var(--red-light);font-style:normal}
+.footer-copy{font-size:0.75rem;color:rgba(255,255,255,0.25);letter-spacing:0.04em}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{
+  font-size:0.72rem;color:rgba(255,255,255,0.25);text-decoration:none;
+  letter-spacing:0.1em;text-transform:uppercase;transition:color .2s;
+}
+.footer-links a:hover{color:rgba(255,255,255,0.6)}
 
-        .nav-item:hover, .nav-item.active {
-            color: var(--black);
-            border-bottom: 1px solid var(--black);
-        }
+/* ─── DIVIDER BAR ─── */
+.divider-bar{
+  background:var(--red);height:3px;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+.divider-track{
+  display:inline-flex;gap:4rem;white-space:nowrap;
+  animation:ticker 20s linear infinite;
+  font-size:0.65rem;font-weight:700;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(255,255,255,0.6);
+  padding:0 2rem;
+}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-        /* ----- MAIN CONTENT AREA ----- */
-        main {
-            margin-top: 110px;
-            min-height: 85vh;
-        }
+/* ─── FADE REVEALS ─── */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
 
-        .section-wrapper {
-            display: none;
-            padding: 100px 0 120px;
-            animation: elegantFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0;
-            transform: translateY(15px);
-        }
-
-        .section-wrapper.active {
-            display: block;
-        }
-
-        @keyframes elegantFade {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ----- TYPOGRAPHY & GRIDS ----- */
-        .kicker {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 600;
-            color: var(--gray-dark);
-            display: block;
-            margin-bottom: 20px;
-            border-left: 2px solid var(--black);
-            padding-left: 15px;
-        }
-
-        .headline {
-            font-size: 4.5rem;
-            line-height: 1.05;
-            font-weight: 600;
-            margin-bottom: 40px;
-            max-width: 1000px;
-            letter-spacing: -1px;
-        }
-
-        .sub-headline {
-            font-size: 1.2rem;
-            color: var(--gray-dark);
-            max-width: 700px;
-            margin-bottom: 60px;
-            font-weight: 300;
-        }
-
-        .grid-half {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .grid-third {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
-        }
-
-        /* ----- CONTENT BLOCKS ----- */
-        .text-block h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .text-block p {
-            color: var(--gray-dark);
-            font-size: 0.95rem;
-            text-align: justify;
-            margin-bottom: 20px;
-        }
-
-        /* ----- IMAGES ----- */
-        .image-frame {
-            width: 100%;
-            height: 500px;
-            background: var(--gray-light);
-            margin-bottom: 60px;
-            overflow: hidden;
-        }
-
-        .image-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(100%);
-        }
-
-        /* ----- PROFILE SECTION ----- */
-        .profile-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .profile-avatar {
-            width: 220px;
-            height: 220px;
-            background-color: var(--black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .profile-avatar svg {
-            width: 80px;
-            height: 80px;
-            fill: var(--white);
-        }
-
-        /* ----- FOOTER ----- */
-        footer {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 100px 0 50px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .footer-logo img {
-            height: 60px; /* BIGGER FOOTER LOGO */
-            filter: invert(1);
-            margin-bottom: 30px;
-        }
-
-        .footer-heading {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray-dark);
-            margin-bottom: 25px;
-        }
-
-        .footer-text {
-            color: #aaaaaa;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .footer-legal {
-            border-top: 1px solid #222222;
-            padding-top: 30px;
-            font-size: 0.7rem;
-            color: #666666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 1024px) {
-            .headline { font-size: 3rem; }
-            .grid-half, .grid-third { grid-template-columns: 1fr; gap: 50px; }
-            .image-frame { height: 350px; }
-        }
-    </style>
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  .section-header{grid-template-columns:1fr;gap:1.5rem}
+  .plan-row{grid-template-columns:1fr;border:1px solid rgba(255,255,255,0.07);margin-bottom:.5rem}
+  .plan-meta,.plan-price-block,.plan-features-block,.plan-cta-cell{border:none;padding:1.5rem}
+  .why-grid{grid-template-columns:1fr}
+  .why-panel{position:static}
+  .contact-grid{grid-template-columns:1fr}
+  nav a:not(.nav-wa){display:none}
+  .services-table td:nth-child(2){width:auto}
+  .contact-info-cards{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">FIXREST <em>MARKETING</em></a>
     <nav>
-        <div class="container nav-wrapper">
-            <div class="brand-logo" onclick="switchView('home')">
-                <img src="https://raw.githubusercontent.com/fixrestsolutions-netizen/fixrestsolutions/7cdd2f2326517bc2cae8a965809894c941d5025f/assets/logo.jpg" alt="FIXREST">
-            </div>
-            <div class="nav-menu">
-                <a class="nav-item active" onclick="switchView('home')" id="tab-home">The Firm</a>
-                <a class="nav-item" onclick="switchView('liquidity')" id="tab-liquidity">Asset Liquidity</a>
-                <a class="nav-item" onclick="switchView('infrastructure')" id="tab-infrastructure">Data Infrastructure</a>
-                <a class="nav-item" onclick="switchView('leadership')" id="tab-leadership">Executive</a>
-            </div>
-        </div>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#why">About</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-wa" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27d%20like%20to%20enquire%20about%20your%20services." target="_blank">WhatsApp Us</a>
     </nav>
+  </div>
+</header>
 
-    <main>
-        <section id="home" class="section-wrapper active">
-            <div class="container">
-                <span class="kicker">Corporate Overview</span>
-                <h1 class="headline">Precision Capital.<br>Global Infrastructure.</h1>
-                <p class="sub-headline">Fixrest is an institutional-grade acquisition firm. We engineer liquidity for complex real estate portfolios and secure hyper-scale data center infrastructure across emerging digital frontiers.</p>
-                
-                <div class="image-frame">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Institutional Architecture">
-                </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-line"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow reveal">
+      <div class="hero-eyebrow-line"></div>
+      <span>Digital Marketing &amp; IT Services — South Africa</span>
+    </div>
+    <h1 class="reveal reveal-delay-1">
+      We build the<br/>digital presence<br/>your business<br/><em>deserves.</em>
+    </h1>
+    <div class="hero-bottom reveal reveal-delay-2">
+      <p class="hero-tagline">Fixrest Marketing delivers AI-powered WhatsApp automation, multilingual customer engagement, content strategy, and end-to-end IT services to South African businesses that are ready to grow.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27d%20like%20to%20find%20out%20more%20about%20your%20packages." target="_blank">Enquire on WhatsApp</a>
+        <a class="btn-ghost" href="#pricing">View Packages</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="grid-half">
-                    <div class="text-block">
-                        <h3>Strategic Origination</h3>
-                        <p>Operating exclusively off-market, we source high-yield Single Family Rental (SFR) assets across the United States. We serve as a direct, frictionless pipeline for Private Equity firms looking to deploy capital intensely without public market exposure.</p>
-                    </div>
-                    <div class="text-block">
-                        <h3>Southern African Operations</h3>
-                        <p>From our headquarters in Durban and Johannesburg, we identify and vet institutional-grade land for AI data centers. We leverage local economic dynamics to provide our partners with unmatched Capex efficiency in the SADC region.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- DIVIDER -->
+<div class="divider-bar">
+  <div class="divider-track">
+    <span>WhatsApp Automation</span><span>Digital Marketing</span><span>IT Services</span>
+    <span>Local SEO</span><span>Lead Generation</span><span>Multilingual Support</span>
+    <span>Google Business</span><span>Content Strategy</span>
+    <span>WhatsApp Automation</span><span>Digital Marketing</span><span>IT Services</span>
+    <span>Local SEO</span><span>Lead Generation</span><span>Multilingual Support</span>
+    <span>Google Business</span><span>Content Strategy</span>
+  </div>
+</div>
 
-        <section id="liquidity" class="section-wrapper">
-            <div class="container">
-                <span class="kicker">Division I: Real Estate Liquidity</span>
-                <h1 class="headline">Fiduciary Solutions <br>& Portfolio Exits.</h1>
-                <p class="sub-headline">We specialize in the rapid valuation, acquisition, and transition of inherited, probate, and non-performing banking assets.</p>
+<!-- SERVICES -->
+<section class="section services-bg" id="services">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-index">Services</div>
+      <div>
+        <h2 class="section-h">What we deliver</h2>
+        <p class="section-p">A full suite of marketing and IT solutions, engineered for the South African market and powered by modern AI infrastructure.</p>
+      </div>
+    </div>
+    <table class="services-table">
+      <tbody>
+        <tr class="reveal">
+          <td>01</td>
+          <td>
+            <div class="svc-name">WhatsApp Automation</div>
+            <div class="svc-tag">Core Service</div>
+          </td>
+          <td class="svc-desc">AI-powered agents that respond to every customer message within 5 seconds, 24 hours a day, 7 days a week — in English, Zulu, Afrikaans, or Xhosa. Accurate quotes, business hours, FAQs, and booking links, all handled automatically.</td>
+          <td><a class="svc-link" href="https://wa.me/27763834432?text=Hi%20Fixrest!%20I%27m%20interested%20in%20your%20WhatsApp%20Automation%20service." target="_blank">Enquire →</a></td>
+        </tr>
+        <tr class="reveal">
+          <td>02</td>
+          <td>
+            <div class="svc-name">Digital Marketing</div>
+            <div class="svc-tag">Content & Presence</div>
+          </td>
+          <td class="svc-desc">Monthly Instagram captions, SEO-optimised blog posts, email newsletters, and Google Business Profile management — all written in your brand voice, for a South African audience.</td>
+          <td><a class="svc-link" href="https://wa.me/27763834432?text=Hi%20Fixrest!%20I%27m%20interested%20in%20your%20Digital%20Marketing%20service." target="_blank">Enquire →</a></td>
+        </tr>
+        <tr class="reveal">
+          <td>03</td>
+          <td>
+            <div class="svc-name">Local SEO</div>
+            <div class="svc-tag">Search & Discovery</div>
+          </td>
+          <td class="svc-desc">Optimise your Google Business Profile, respond to every review with a personalised reply, and publish local content that improves your visibility to nearby customers actively searching for your services.</td>
+          <td><a class="svc-link" href="https://wa.me/27763834432?text=Hi%20Fixrest!%20I%27m%20interested%20in%20your%20Local%20SEO%20service." target="_blank">Enquire →</a></td>
+        </tr>
+        <tr class="reveal">
+          <td>04</td>
+          <td>
+            <div class="svc-name">IT Services</div>
+            <div class="svc-tag">Infrastructure & Support</div>
+          </td>
+          <td class="svc-desc">System setup, network configuration, and ongoing software support. Reliable IT infrastructure that keeps your business operational — without the complexity or cost of an in-house team.</td>
+          <td><a class="svc-link" href="https://wa.me/27763834432?text=Hi%20Fixrest!%20I%27m%20interested%20in%20your%20IT%20Services." target="_blank">Enquire →</a></td>
+        </tr>
+        <tr class="reveal">
+          <td>05</td>
+          <td>
+            <div class="svc-name">Lead Generation</div>
+            <div class="svc-tag">Growth & Outreach</div>
+          </td>
+          <td class="svc-desc">Daily automated prospecting that identifies, researches, and sends personalised outreach to 20 qualified prospects per day. Your pipeline stays active without lifting a finger.</td>
+          <td><a class="svc-link" href="https://wa.me/27763834432?text=Hi%20Fixrest!%20I%27m%20interested%20in%20your%20Lead%20Generation%20service." target="_blank">Enquire →</a></td>
+        </tr>
+        <tr class="reveal">
+          <td>06</td>
+          <td>
+            <div class="svc-name">Reporting & Strategy</div>
+            <div class="svc-tag">Insights & Planning</div>
+          </td>
+          <td class="svc-desc">Monthly plain-English performance reports, 30-minute strategy calls, and real-time WhatsApp escalation alerts — so you always know exactly what is happening and what to do next.</td>
+          <td><a class="svc-link" href="https://wa.me/27763834432?text=Hi%20Fixrest!%20I%27m%20interested%20in%20your%20Reporting%20and%20Strategy%20service." target="_blank">Enquire →</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
-                <div class="grid-third">
-                    <div class="text-block">
-                        <h3>Deceased Estates</h3>
-                        <p>We partner with legal executors to liquidate inherited properties swiftly. By acquiring properties "as-is," families bypass the holding costs and emotional friction of traditional market listings, ensuring a dignified transfer of capital.</p>
-                    </div>
-                    <div class="text-block">
-                        <h3>Banking Partnerships</h3>
-                        <p>For financial institutions holding non-performing real estate (REO), time equates to lost yield. Fixrest acquires distressed portfolios directly, providing immediate balance-sheet relief.</p>
-                    </div>
-                    <div class="text-block">
-                        <h3>Absolute Discretion</h3>
-                        <p>Maintaining the integrity of the asset's history is paramount. Our acquisitions are off-market, ensuring strict privacy for the sellers and a sophisticated transition of title.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- PRICING -->
+<section class="section pricing-bg" id="pricing">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-index">Packages</div>
+      <div>
+        <h2 class="section-h">Transparent pricing</h2>
+        <p class="section-p">Three packages designed for different stages of growth. Each "Get Started" button opens a pre-filled WhatsApp message so we can respond immediately.</p>
+      </div>
+    </div>
+    <div class="plans-wrap">
 
-        <section id="infrastructure" class="section-wrapper">
-            <div class="container">
-                <span class="kicker">Division II: Infrastructure</span>
-                <h1 class="headline">Hyper-Scale AI <br>Site Selection.</h1>
-                <p class="sub-headline">Acting as the localized vanguard for international Private Equity, we secure the physical backbone of the 2026 artificial intelligence boom in Southern Africa.</p>
-
-                <div class="image-frame" style="height: 400px;">
-                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2068&auto=format&fit=crop" alt="Data Center Architecture">
-                </div>
-
-                <div class="grid-half">
-                    <div class="text-block">
-                        <h3>The African Advantage</h3>
-                        <p>The global demand for GPU clusters requires vast power and space. Southern Africa provides a highly favorable ZAR/USD exchange rate, making land acquisition and localized construction exceptionally cost-effective for US and European funds.</p>
-                    </div>
-                    <div class="text-block">
-                        <h3>The Technical Guarantee</h3>
-                        <p>We do not just find land; we deliver a de-risked asset. Our selection criteria mandate a minimum 10MW grid capacity, specialized industrial zoning, and direct proximity to critical subsea fiber cables like 2Africa and Equiano.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="leadership" class="section-wrapper">
-            <div class="container">
-                <span class="kicker">Executive Office</span>
-                <h1 class="headline">Giyani Baloyi.</h1>
-                
-                <div class="grid-half">
-                    <div class="profile-container">
-                        <div class="profile-avatar">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                        </div>
-                        <h3 class="serif" style="font-size: 2rem; margin-bottom: 5px;">Chief Executive Officer</h3>
-                        <p style="color: var(--gray-dark); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Durban & Johannesburg</p>
-                    </div>
-                    
-                    <div class="text-block" style="padding-top: 20px;">
-                        <p>As the architect of Fixrest’s strategic evolution, Giyani Baloyi oversees the firm’s dual-mission of real estate liquidity and technological infrastructure development. Recognizing massive macro-economic shifts, he engineered the firm's pivot into a powerhouse of institutional asset acquisition.</p>
-                        <p>His philosophy is rooted in <strong>Precision Acquisition</strong>. Whether navigating the sensitive legal frameworks of a fiduciary estate in the United States or negotiating early-stage site securing for an AI data facility in South Africa, his focus remains absolute: construct a portfolio that is highly liquid and technologically critical.</p>
-                        <p>Under his direction, Fixrest provides an essential bridge for international Private Equity looking to capitalize on the African digital boom.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">
-                        <img src="https://raw.githubusercontent.com/fixrestsolutions-netizen/fixrestsolutions/7cdd2f2326517bc2cae8a965809894c941d5025f/assets/logo.jpg" alt="FIXREST">
-                    </div>
-                    <p class="footer-text">Strategic Real Estate & Infrastructure Acquisitions.</p>
-                    <p class="footer-text">Durban | Johannesburg | United States</p>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Direct Inquiries</h4>
-                    <a href="mailto:acquisitions@fixrest.co.za" class="footer-text" style="color: #fff;">acquisitions@fixrest.co.za</a>
-                    <span class="footer-text">www.fixrest.co.za</span>
-                </div>
-                <div>
-                    <h4 class="footer-heading">Corporate Address</h4>
-                    <span class="footer-text">KwaZulu-Natal Head Office</span>
-                    <span class="footer-text">Gauteng Operations Hub</span>
-                </div>
-            </div>
-            
-            <div class="footer-legal">
-                &copy; 2026 FIXREST HOLDINGS. ALL RIGHTS RESERVED. OPERATING IN STRICT COMPLIANCE WITH POPIA (SA) AND US REGULATORY FRAMEWORKS.
-            </div>
+      <!-- STARTER -->
+      <div class="plan-row reveal">
+        <div class="plan-meta">
+          <div>
+            <div class="plan-tier">Tier 01</div>
+            <div class="plan-name">Starter</div>
+            <div class="plan-best">Small &amp; first-time clients</div>
+          </div>
         </div>
-    </footer>
+        <div class="plan-price-block">
+          <div class="plan-amount">R800</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-setup">+ R1,000 once-off setup fee</div>
+        </div>
+        <div class="plan-features-block">
+          <ul class="plan-features-list">
+            <li>WhatsApp auto-reply within 5 seconds, 24/7</li>
+            <li>English language support</li>
+            <li>Price list &amp; accurate quote responses</li>
+            <li>Business hours &amp; location information</li>
+            <li>Basic FAQ — 10 most common questions</li>
+            <li>Escalation flag when customer is upset</li>
+            <li>Updates by request at R200 per change</li>
+          </ul>
+        </div>
+        <div class="plan-cta-cell">
+          <a class="btn-wa-plan" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27m%20interested%20in%20the%20*Starter%20Package*%20(R800%2Fmo%20%2B%20R1%2C000%20setup).%20Please%20send%20me%20more%20information." target="_blank">Get Started</a>
+          <p class="plan-note">Starter package — ideal for getting started with automation at a low entry cost.</p>
+        </div>
+      </div>
 
-    <script>
-        function switchView(tabId) {
-            // Hide all sections
-            document.querySelectorAll('.section-wrapper').forEach(s => {
-                s.classList.remove('active');
-            });
-            // Remove active state from nav links
-            document.querySelectorAll('.nav-item').forEach(l => {
-                l.classList.remove('active');
-            });
-            
-            // Show new section
-            document.getElementById(tabId).classList.add('active');
-            // Highlight new nav link
-            document.getElementById('tab-' + tabId).classList.add('active');
-            
-            // Smooth scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+      <!-- PROFESSIONAL -->
+      <div class="plan-row featured reveal">
+        <div class="plan-meta">
+          <div>
+            <div class="featured-badge">Most Popular</div>
+            <div class="plan-tier">Tier 02</div>
+            <div class="plan-name">Professional</div>
+            <div class="plan-best">Salons, restaurants, contractors, tutors</div>
+          </div>
+        </div>
+        <div class="plan-price-block">
+          <div class="plan-amount">R1,800</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-setup">+ R2,000 once-off setup fee</div>
+        </div>
+        <div class="plan-features-block">
+          <ul class="plan-features-list">
+            <li>Everything in Starter, plus:</li>
+            <li>4 languages — English, Zulu, Afrikaans, Xhosa (auto-detects)</li>
+            <li>Booking system integration — Calendly or Booksy</li>
+            <li>Full conversation logging to Airtable</li>
+            <li>Instant WhatsApp escalation alert to owner</li>
+            <li>Monthly performance report in plain English</li>
+            <li>2 free updates per month within 24 hours</li>
+            <li>Priority issue resolution within 4 business hours</li>
+          </ul>
+        </div>
+        <div class="plan-cta-cell">
+          <a class="btn-wa-plan" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27m%20interested%20in%20the%20*Professional%20Package*%20(R1%2C800%2Fmo%20%2B%20R2%2C000%20setup).%20Please%20send%20me%20more%20information." target="_blank">Get Started</a>
+          <p class="plan-note">Our recommended package for most businesses — complete automation with multi-language support and reporting.</p>
+        </div>
+      </div>
+
+      <!-- FULL SERVICE -->
+      <div class="plan-row reveal">
+        <div class="plan-meta">
+          <div>
+            <div class="plan-tier">Tier 03</div>
+            <div class="plan-name">Full Service</div>
+            <div class="plan-best">Established businesses</div>
+          </div>
+        </div>
+        <div class="plan-price-block">
+          <div class="plan-amount">R3,500</div>
+          <div class="plan-period">per month</div>
+          <div class="plan-setup">+ R3,500 once-off setup fee</div>
+        </div>
+        <div class="plan-features-block">
+          <ul class="plan-features-list">
+            <li>Everything in Professional, plus:</li>
+            <li>20 Instagram captions per month in your brand voice</li>
+            <li>2 SEO blog posts per month — 800 words, SA-specific</li>
+            <li>1 email newsletter per month</li>
+            <li>Google Business Profile management</li>
+            <li>Personalised Google review responses within 24 hours</li>
+            <li>Unlimited agent updates — same day turnaround</li>
+            <li>Monthly 30-minute strategy call</li>
+            <li>Priority WhatsApp support — 1 hour response, 7 days</li>
+          </ul>
+        </div>
+        <div class="plan-cta-cell">
+          <a class="btn-wa-plan" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27m%20interested%20in%20the%20*Full%20Service%20Package*%20(R3%2C500%2Fmo%20%2B%20R3%2C500%20setup).%20Please%20send%20me%20more%20information." target="_blank">Get Started</a>
+          <p class="plan-note">Complete digital presence management — automation, content, SEO, and strategy in one package.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-bg" id="why">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-index">Why Fixrest</div>
+      <div>
+        <h2 class="section-h">Built for the South African market</h2>
+        <p class="section-p">We understand the languages, the landscape, and what local businesses need to win customers in a competitive digital environment.</p>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item reveal">
+          <div class="why-n">i.</div>
+          <div>
+            <h4>Multilingual by design</h4>
+            <p>Our WhatsApp agents auto-detect and respond in English, Zulu, Afrikaans, or Xhosa — serving your customers in the language they are most comfortable with, without any manual intervention.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-n">ii.</div>
+          <div>
+            <h4>Always-on responsiveness</h4>
+            <p>Customers who message your business receive a response within 5 seconds at any hour. No leads go cold. No enquiry goes unanswered. Your business works while you sleep.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-n">iii.</div>
+          <div>
+            <h4>AI-powered, affordably priced</h4>
+            <p>We leverage modern AI infrastructure and automation tools to deliver services previously only available to large enterprises — at monthly rates accessible to small and medium businesses.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-n">iv.</div>
+          <div>
+            <h4>Full accountability</h4>
+            <p>Monthly performance reports in plain English, real-time escalation alerts, and regular strategy calls ensure you are always informed and in control of your business's digital performance.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-n">v.</div>
+          <div>
+            <h4>Rapid deployment</h4>
+            <p>Standard setup takes 3–5 business days. Rush setup — including a 24-hour go-live option — is available for businesses that need to move quickly. We are ready when you are.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="why-panel reveal">
+          <div class="why-panel-title">Service specifications</div>
+          <div class="spec-row"><span class="spec-label">WhatsApp response time</span><span class="spec-val">Under 5 seconds</span></div>
+          <div class="spec-row"><span class="spec-label">Availability</span><span class="spec-val">24 / 7 / 365</span></div>
+          <div class="spec-row"><span class="spec-label">Languages supported</span><span class="spec-val">Up to 4 SA languages</span></div>
+          <div class="spec-row"><span class="spec-label">Standard setup</span><span class="spec-val">3–5 business days</span></div>
+          <div class="spec-row"><span class="spec-label">Rush setup</span><span class="spec-val">24 hours</span></div>
+          <div class="spec-row"><span class="spec-label">Starter from</span><span class="spec-val red">R800 / month</span></div>
+          <div class="spec-row"><span class="spec-label">Professional from</span><span class="spec-val red">R1,800 / month</span></div>
+          <div class="spec-row"><span class="spec-label">Full Service from</span><span class="spec-val red">R3,500 / month</span></div>
+          <div class="why-panel-cta">
+            <p>Ready to get started? Send us a message on WhatsApp and we will respond promptly with a recommendation tailored to your business.</p>
+            <a class="btn-primary" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27d%20like%20to%20discuss%20a%20package%20for%20my%20business." target="_blank">WhatsApp Enquiry</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-bg" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="section-index reveal" style="margin-bottom:1.5rem">Contact</div>
+        <h2 class="section-h reveal" style="color:#fff;font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-0.01em">Let us help you grow.</h2>
+        <p class="contact-sub reveal">Contact us via WhatsApp for the fastest response. We typically reply within minutes during business hours and will recommend the right package for your situation.</p>
+        <div class="contact-detail reveal">
+          <a class="contact-line" href="https://wa.me/27763834432" target="_blank">
+            <span class="contact-line-label">WhatsApp</span>
+            <span class="contact-line-val">+27 76 383 4432</span>
+            <span class="contact-line-arrow">↗</span>
+          </a>
+          <a class="contact-line" href="mailto:fixrestmarketing@gmail.com">
+            <span class="contact-line-label">Email</span>
+            <span class="contact-line-val">fixrestmarketing@gmail.com</span>
+            <span class="contact-line-arrow">↗</span>
+          </a>
+          <div class="contact-line">
+            <span class="contact-line-label">Location</span>
+            <span class="contact-line-val">South Africa</span>
+            <span class="contact-line-arrow"></span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right reveal">
+        <a class="wa-main" href="https://wa.me/27763834432?text=Hi%20Fixrest%20Marketing!%20I%27d%20like%20to%20find%20out%20more%20about%20your%20services%20and%20which%20package%20would%20suit%20my%20business." target="_blank">
+          <div class="wa-main-left">
+            <div class="wa-main-eyebrow">Send us a message</div>
+            <div class="wa-main-text">Start on WhatsApp</div>
+          </div>
+          <div class="wa-main-arrow">→</div>
+        </a>
+        <div class="contact-info-cards">
+          <div class="info-card">
+            <div class="info-card-label">Starter Package</div>
+            <div class="info-card-val">R800/mo + R1,000 setup</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Professional Package</div>
+            <div class="info-card-val">R1,800/mo + R2,000 setup</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Full Service Package</div>
+            <div class="info-card-val">R3,500/mo + R3,500 setup</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-label">Response time</div>
+            <div class="info-card-val">Within minutes on WhatsApp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a class="footer-logo" href="#">FIXREST <em>MARKETING</em></a>
+    <span class="footer-copy">© 2025 Fixrest Marketing. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
