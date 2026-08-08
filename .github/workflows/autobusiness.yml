@@ -1,0 +1,36 @@
+name: Fixrest Autonomous Agent
+
+on:
+  schedule:
+    - cron: '0 8 * * 1,4' # Runs automatically every Monday and Thursday at 08:00 UTC
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  execute-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        run: pip install anthropic requests
+
+      - name: Run Craig van Niekerk Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          WHATSAPP_TOKEN: ${{ secrets.WHATSAPP_TOKEN }}
+          WHATSAPP_PHONE_ID: ${{ secrets.WHATSAPP_PHONE_ID }}
+        run: python agent.py
+
+      - name: Commit and Push Updates
+        run: |
+          git config --global user.name "Craig van Niekerk"
+          git config --global user.email "craig@fixrest.co.za"
+          git add index.html
+          git commit -m "Automated update by Craig van Niekerk [skip ci]" || exit 0
+          git push
